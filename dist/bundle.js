@@ -14,7 +14,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var newyear = 2021;
-console.log("Hello ".concat(newyear, " yopooo"));
+console.log("Hello ".concat(newyear, " yopo"));
 var isBabel = !( /*#__PURE__*/function () {
   function _class() {
     _classCallCheck(this, _class);
