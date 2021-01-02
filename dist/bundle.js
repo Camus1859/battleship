@@ -14,7 +14,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var newyear = 2021;
-console.log("Hello ".concat(newyear, " yo"));
+console.log("Hello ".concat(newyear, " yopooo"));
 var isBabel = !( /*#__PURE__*/function () {
   function _class() {
     _classCallCheck(this, _class);
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\n  background: rgb(122, 179, 122);\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;AAChC","sourcesContent":["body{\n  background: rgb(122, 179, 122);\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\n  background: rgb(122, 179, 127);\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;AAChC","sourcesContent":["body{\n  background: rgb(122, 179, 127);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -548,4 +548,4 @@ module.exports = function (list, options) {
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;
-//# sourceMappingURL=bunde.js.map
+//# sourceMappingURL=bundle.js.map
