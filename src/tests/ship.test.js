@@ -1,24 +1,23 @@
 /* eslint-disable no-undef */
 import { shipFactory } from '../modules/ship';
 
-const num = 5;
+const num = 4;
 
 const ship = shipFactory(num);
 
-test('ships length returns a number >= 0', () => {
+test('ships length returns a number === number passed in', () => {
   expect(ship.length).toEqual(num);
 });
 
-test('ships location of hit returns a number >0 && <5', () => {
-  expect(ship.hit(3)).toEqual([true, true, true, false, true]);
+test('returns an array length === lenth property and displays ships lives as "true" or hits as "false"', () => {
+  expect(ship.hit(0)).toEqual([false, true, true, true, true]);
 });
 
-test('ships location of hit returns a number >0 && <5', () => {
-  ship.hit(2);
-  expect(ship.hit(3)).toEqual([true, true, false, false, true]);
+test('returns ', () => {
+  ship.hit(0);
+  ship.hit(1);
+  expect(ship.hit(4)).toEqual([false, false, true, true, false]);
 });
-
-
 
 // test('ship sinks if length is === 0', () => {
 //   expect(ship.sunkShip()).toEqual('game over');
