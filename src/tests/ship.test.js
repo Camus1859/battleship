@@ -14,11 +14,14 @@ test('returns an array length === lenth property and displays ships lives as "tr
 });
 
 test('returns ', () => {
-  ship.hit(0);
-  ship.hit(1);
-  expect(ship.hit(4)).toEqual([false, false, true, true, false]);
+   ship.hit(1);
+  ship.hit(2);
+  ship.hit(3);
+  expect(ship.hit(4)).toEqual([false, false, false, false, false]);
 });
 
-// test('ship sinks if length is === 0', () => {
-//   expect(ship.sunkShip()).toEqual('game over');
-// });
+test('ship sinks if all  indices are false', () => {
+  expect(ship.sunkShip()).toEqual('sink');
+});
+
+
