@@ -10,19 +10,9 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 
 var newyear = 2021;
-console.log("Hello ".concat(newyear, " yopo"));
-var isBabel = !( /*#__PURE__*/function () {
-  function _class() {
-    _classCallCheck(this, _class);
-  }
-
-  return _class;
-}().toString().indexOf('class ') === 0);
-console.log(isBabel);
+console.log("Hello ".concat(newyear, " yilllllpppppppppi"));
 
 /***/ }),
 

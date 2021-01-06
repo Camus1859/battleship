@@ -1,16 +1,18 @@
-// eslint-disable-next-line import/prefer-default-export
-export const shipFactory = () => {
-  const shipsLength = (length) => length;
+/* eslint-disable import/prefer-default-export */
 
-  const locationOfHit = (sectionOfHit) => sectionOfHit;
+export const shipFactory = (length) => {
 
-  const sunkShip = () => {
-    if (shipsLength() === 0) return 'game over';
+  const hit = (value) => {
+    const shipsLife = [];
+    for (let i = 0; i < length; i++) {
+      shipsLife[i] = true;
+    }
+    shipsLife[value] = false;
+    return shipsLife;
   };
 
   return {
-    shipsLength,
-    locationOfHit,
-    sunkShip,
+    length,
+    hit,
   };
 };
