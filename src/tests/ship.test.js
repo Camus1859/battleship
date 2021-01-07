@@ -1,12 +1,11 @@
 /* eslint-disable no-undef */
 import { shipFactory } from '../modules/ship';
 
-const num = 4;
-
-const ship = shipFactory(num);
+const shipsLives = 4;
+const ship = shipFactory(shipsLives);
 
 test('ships length returns a number === number passed in', () => {
-  expect(ship.length).toEqual(num);
+  expect(ship.length).toEqual(shipsLives);
 });
 
 test('returns an array length === lenth property and displays ships lives as "true" or hits as "false"', () => {
@@ -14,7 +13,7 @@ test('returns an array length === lenth property and displays ships lives as "tr
 });
 
 test('returns ', () => {
-   ship.hit(1);
+  ship.hit(1);
   ship.hit(2);
   ship.hit(3);
   expect(ship.hit(4)).toEqual([false, false, false, false, false]);
@@ -23,5 +22,3 @@ test('returns ', () => {
 test('ship sinks if all  indices are false', () => {
   expect(ship.sunkShip()).toEqual('sink');
 });
-
-
