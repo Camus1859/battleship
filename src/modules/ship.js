@@ -1,7 +1,9 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable import/prefer-default-export */
 
-export const shipFactory = (length) => {
+export const shipFactory = (length, id) => {
+  const uniqueNumber = id;
+  const getUniqueNumber = () => uniqueNumber;
   const shipsLife = [];
 
   const hit = (value) => {
@@ -25,5 +27,6 @@ export const shipFactory = (length) => {
     length,
     hit,
     sunkShip,
+    getUniqueNumber,
   };
 };

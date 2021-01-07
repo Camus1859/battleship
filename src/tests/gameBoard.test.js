@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
+import { shipContainer } from './ship.test';
 import { gameBoardFactory } from '../modules/gameboard';
-import { shipFactory } from '../modules/ship';
 
-const shipsLives = 4;
-const ship = shipFactory(shipsLives);
+// Dumby Values for gameboard and ship, will come from another module.
 const locationXForShip = 1;
 const locationYForShip = 'A';
-const gameboard = gameBoardFactory(locationXForShip, locationYForShip, ship);
+const gameboard = gameBoardFactory(locationXForShip, locationYForShip, shipContainer);
+/// /////////////////////////////////////////////////////
 
 test('checking current gameboard objects ability to set coordinates for current ship', () => {
   expect(gameboard.shipAtCoordinateX).toEqual(1);
@@ -14,12 +14,16 @@ test('checking current gameboard objects ability to set coordinates for current 
 });
 
 test('determine attack hit a ship', () => {
-  expect(gameboard.receiveAttackAtCoordinates(1, 'A')).toBe('hit');
-  expect(ship.hit(3)).toEqual([true, true, true, false, true]);
+  expect(gameboard.receiveAttackAtCoordinates(1, 'A')).toEqual('hit');
 });
 
 test('records attack that missed ship', () => {
-  expect(gameboard.receiveAttackAtCoordinates(14, 'M')).toEqual([14, 'M']);
+  gameboard.receiveAttackAtCoordinates(6, 'K');
+  expect(gameboard.receiveAttackAtCoordinates(14, 'M')).toEqual([6, 'K', 14, 'M']);
+});
+
+test('checking if all checks have been sunk', () => {
+
 });
 
 // Unnecassary Code!

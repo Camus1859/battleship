@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export */
+
 export const gameBoardFactory = (
   shipAtCoordinateX,
   shipAtCoordinateY,
-  ship,
+  shipContainer,
 ) => {
+  const missedShots = [];
+
   const receiveAttackAtCoordinates = (
     attackingCoordinateX,
     attackingCoordinateY,
@@ -12,19 +15,20 @@ export const gameBoardFactory = (
       shipAtCoordinateX === attackingCoordinateX &&
       shipAtCoordinateY === attackingCoordinateY
     ) {
-      ship.hit(3);
+      shipContainer[0].hit(3);
       return 'hit';
     }
-    const missedShots = [];
     missedShots.push(attackingCoordinateX);
     missedShots.push(attackingCoordinateY);
     return missedShots;
   };
 
+  const checkingIfAllShipsAreSunk = () => {};
+
   return {
     shipAtCoordinateX,
     shipAtCoordinateY,
-    ship,
+    shipContainer,
     receiveAttackAtCoordinates,
   };
 };
