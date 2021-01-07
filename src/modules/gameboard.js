@@ -1,8 +1,31 @@
 /* eslint-disable import/prefer-default-export */
-export const gameBoardFactory = (coord1, coord2, ship) => {
+export const gameBoardFactory = (
+  shipAtCoordinateX,
+  shipAtCoordinateY,
+  ship,
+) => {
+  const receiveAttackAtCoordinates = (
+    attackingCoordinateX,
+    attackingCoordinateY,
+  ) => {
+    if (
+      shipAtCoordinateX === attackingCoordinateX &&
+      shipAtCoordinateY === attackingCoordinateY
+    ) {
+      ship.hit(3);
+      return 'hit';
+    } else {
+      const missedShots = [];
+      missedShots.push(attackingCoordinateX);
+      missedShots.push(attackingCoordinateY);
+      return missedShots;
+    }
+  };
+
   return {
-    coord1,
-    coord2,
+    shipAtCoordinateX,
+    shipAtCoordinateY,
     ship,
+    receiveAttackAtCoordinates,
   };
 };
