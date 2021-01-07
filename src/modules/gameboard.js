@@ -14,12 +14,11 @@ export const gameBoardFactory = (
     ) {
       ship.hit(3);
       return 'hit';
-    } else {
-      const missedShots = [];
-      missedShots.push(attackingCoordinateX);
-      missedShots.push(attackingCoordinateY);
-      return missedShots;
     }
+    const missedShots = [];
+    missedShots.push(attackingCoordinateX);
+    missedShots.push(attackingCoordinateY);
+    return missedShots;
   };
 
   return {

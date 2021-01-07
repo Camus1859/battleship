@@ -18,11 +18,8 @@ test('determine attack hit a ship', () => {
   expect(ship.hit(3)).toEqual([true, true, true, false, true]);
 });
 
-
 test('records attack that missed ship', () => {
-  gameboard.receiveAttackAtCoordinates(9, 'K');
-  gameboard.receiveAttackAtCoordinates(5, 'G');
-  gameboard.receiveAttackAtCoordinates(14, 'M').toStrictEqual([9, 'K', 5, 'G', 14, 'M']);
+  expect(gameboard.receiveAttackAtCoordinates(14, 'M')).toEqual([14, 'M']);
 });
 
 // Unnecassary Code!
