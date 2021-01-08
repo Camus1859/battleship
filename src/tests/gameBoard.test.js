@@ -1,13 +1,16 @@
 /* eslint-disable no-undef */
-import { shipContainer } from './ship.test';
+import { shipContainerBlue, shipContainerRed } from './ship.test';
+
 import { gameBoardFactory } from '../modules/gameboard';
 
 // Dumby Values for gameboard, will come from another module.
-const gameboard = gameBoardFactory(shipContainer);
+const gameboardBlue = gameBoardFactory(shipContainerBlue);
+
+const gameboardRed = gameBoardFactory(shipContainerRed);
 /// /////////////////////////////////////////////////////
 
 test('checking gameboard objects ability to read coordinates for a ship', () => {
-  expect(gameboard.shipContainer[0].shipsCoordinates).toEqual({
+  expect(gameboardBlue.shipContainer[0].shipsCoordinates).toEqual({
     0: 'A1',
     1: 'A2',
     2: 'A3',
@@ -17,7 +20,7 @@ test('checking gameboard objects ability to read coordinates for a ship', () => 
 });
 
 test('determine attack hit a ship', () => {
-  expect(gameboard.attackShipAt('A1')).toStrictEqual([
+  expect(gameboardBlue.attackShipAt('A1')).toStrictEqual([
     false,
     false,
     false,
@@ -27,23 +30,23 @@ test('determine attack hit a ship', () => {
 });
 
 test('records attack that missed ship', () => {
-  gameboard.attackShipAt('P5');
-  gameboard.attackShipAt('K9');
-  expect(gameboard.attackShipAt('M14')).toStrictEqual(['P5', 'K9', 'M14']);
+  gameboardBlue.attackShipAt('P5');
+  gameboardBlue.attackShipAt('K9');
+  expect(gameboardBlue.attackShipAt('M14')).toStrictEqual(['P5', 'K9', 'M14']);
 });
 
 test('checking if ALL ships have been sunk', () => {
-  shipContainer[1].hitAtLocation(0);
-  shipContainer[1].hitAtLocation(1);
-  shipContainer[1].hitAtLocation(2);
-  shipContainer[1].hitAtLocation(3);
-  shipContainer[1].hitAtLocation(4);
-  shipContainer[1].hitAtLocation(5);
-  shipContainer[0].hitAtLocation(0);
-  shipContainer[0].hitAtLocation(1);
-  shipContainer[0].hitAtLocation(2);
-  shipContainer[0].hitAtLocation(3);
-  shipContainer[0].hitAtLocation(4);
+  shipContainerBlue[1].hitAtLocation(0);
+  shipContainerBlue[1].hitAtLocation(1);
+  shipContainerBlue[1].hitAtLocation(2);
+  shipContainerBlue[1].hitAtLocation(3);
+  shipContainerBlue[1].hitAtLocation(4);
+  shipContainerBlue[1].hitAtLocation(5);
+  shipContainerBlue[0].hitAtLocation(0);
+  shipContainerBlue[0].hitAtLocation(1);
+  shipContainerBlue[0].hitAtLocation(2);
+  shipContainerBlue[0].hitAtLocation(3);
+  shipContainerBlue[0].hitAtLocation(4);
 
-  expect(gameboard.checkingIfAllShipsAreSunk()).toEqual(true);
+  expect(gameboardBlue.checkingIfAllShipsAreSunk()).toEqual(true);
 });
