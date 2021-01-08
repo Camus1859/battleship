@@ -1,13 +1,13 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable import/prefer-default-export */
 
-export const shipFactory = (length, id) => {
+export const shipFactory = (shipsLives, id, shipsCoordinates) => {
   const uniqueNumber = id;
   const getUniqueNumber = () => uniqueNumber;
   const shipsLife = [];
 
-  const hit = (value) => {
-    for (let i = 0; i <= length; i++) {
+  const hitAtLocation = (value) => {
+    for (let i = 0; i <= shipsLives; i++) {
       if (shipsLife[i] === false) continue;
       else {
         shipsLife[i] = true;
@@ -24,9 +24,10 @@ export const shipFactory = (length, id) => {
   };
 
   return {
-    length,
-    hit,
+    shipsLives,
+    hitAtLocation,
     sunkShip,
     getUniqueNumber,
+    shipsCoordinates,
   };
 };

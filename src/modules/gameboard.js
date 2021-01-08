@@ -1,34 +1,30 @@
+/* eslint-disable no-else-return */
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable import/prefer-default-export */
 
-export const gameBoardFactory = (
-  shipAtCoordinateX,
-  shipAtCoordinateY,
-  shipContainer,
-) => {
+export const gameBoardFactory = (shipContainer) => {
   const missedShots = [];
 
-  const receiveAttackAtCoordinates = (
-    attackingCoordinateX,
-    attackingCoordinateY,
-  ) => {
-    if (
-      shipAtCoordinateX === attackingCoordinateX &&
-      shipAtCoordinateY === attackingCoordinateY
-    ) {
-      shipContainer[0].hit(3);
-      return 'hit';
+  const attackShipAt = (locationOfAttack) => {
+    for (let i = 0; i <= shipContainer.length; i++) {
+      for (const [key, shipsLocation] of Object.entries(
+        shipContainer[i].shipsCoordinates
+      )) {
+        if (shipsLocation !== locationOfAttack) {
+          missedShots.push(locationOfAttack);
+          return missedShots;
+        } else {
+          return shipContainer[i].hitAtLocation(key);
+        }
+      }
     }
-    missedShots.push(attackingCoordinateX);
-    missedShots.push(attackingCoordinateY);
-    return missedShots;
   };
 
-  const checkingIfAllShipsAreSunk = () => {};
+  // const checkingIfAllShipsAreSunk = () => {};
 
   return {
-    shipAtCoordinateX,
-    shipAtCoordinateY,
     shipContainer,
-    receiveAttackAtCoordinates,
+    attackShipAt,
   };
 };
