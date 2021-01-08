@@ -66,15 +66,15 @@ test('ships length returns a number === number passed in', () => {
   expect(shipContainerBlue[0].shipsLives).toEqual(shipsLivesBlue1);
 });
 
-test('returns an array length === lenth property and displays ships lives as "true" or hiits as "false"', () => {
-  expect(shipContainerBlue[0].hitAtLocation(0)).toEqual([false, true, true, true, true]);
+test('returns an array length === lenth property and displays ships lives as "true" or hits as "false"', () => {
+  expect(shipContainerBlue[0].hitTheShipAtThisIndex(0)).toEqual([false, true, true, true, true]);
 });
 
 test('returns ', () => {
-  shipContainerBlue[0].hitAtLocation(1);
-  shipContainerBlue[0].hitAtLocation(2);
-  shipContainerBlue[0].hitAtLocation(3);
-  expect(shipContainerBlue[0].hitAtLocation(4)).toEqual([false, false, false, false, false]);
+  shipContainerBlue[0].hitTheShipAtThisIndex(1);
+  shipContainerBlue[0].hitTheShipAtThisIndex(2);
+  shipContainerBlue[0].hitTheShipAtThisIndex(3);
+  expect(shipContainerBlue[0].hitTheShipAtThisIndex(4)).toEqual([false, false, false, false, false]);
 });
 
 test('ship sinks if all  indices are false', () => {

@@ -5,10 +5,9 @@ export const shipFactory = (shipsLives, id, shipsCoordinates) => {
   const uniqueNumber = id;
   const getUniqueNumber = () => uniqueNumber;
   const shipsLife = [];
-
   const getShipsLife = () => shipsLife;
 
-  const hitAtLocation = (value) => {
+  const hitTheShipAtThisIndex = (value) => {
     for (let i = 0; i <= shipsLives; i++) {
       if (shipsLife[i] === false) continue;
       else {
@@ -27,7 +26,7 @@ export const shipFactory = (shipsLives, id, shipsCoordinates) => {
 
   return {
     shipsLives,
-    hitAtLocation,
+    hitTheShipAtThisIndex,
     sunkShip,
     getUniqueNumber,
     shipsCoordinates,
