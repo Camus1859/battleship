@@ -21,10 +21,19 @@ export const gameBoardFactory = (shipContainer) => {
     }
   };
 
-  // const checkingIfAllShipsAreSunk = () => {};
+  const checkingIfAllShipsAreSunk = () => {
+    const equalToFalse = (bool) => bool === false;
+
+    let allFalse = shipContainer
+      .map((ship) => ship.getShipsLife())
+      .map((arr) => arr.every(equalToFalse));
+    allFalse = allFalse.every((item) => item === true);
+    return allFalse;
+  };
 
   return {
     shipContainer,
     attackShipAt,
+    checkingIfAllShipsAreSunk,
   };
 };

@@ -17,7 +17,13 @@ test('checking gameboard objects ability to read coordinates for a ship', () => 
 });
 
 test('determine attack hit a ship', () => {
-  expect(gameboard.attackShipAt('A1')).toStrictEqual([false, false, false, false, false]);
+  expect(gameboard.attackShipAt('A1')).toStrictEqual([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 });
 
 test('records attack that missed ship', () => {
@@ -26,47 +32,18 @@ test('records attack that missed ship', () => {
   expect(gameboard.attackShipAt('M14')).toStrictEqual(['P5', 'K9', 'M14']);
 });
 
-// test('checking if all checks have been sunk', () => {
+test('checking if ALL ships have been sunk', () => {
+  shipContainer[1].hitAtLocation(0);
+  shipContainer[1].hitAtLocation(1);
+  shipContainer[1].hitAtLocation(2);
+  shipContainer[1].hitAtLocation(3);
+  shipContainer[1].hitAtLocation(4);
+  shipContainer[1].hitAtLocation(5);
+  shipContainer[0].hitAtLocation(0);
+  shipContainer[0].hitAtLocation(1);
+  shipContainer[0].hitAtLocation(2);
+  shipContainer[0].hitAtLocation(3);
+  shipContainer[0].hitAtLocation(4);
 
-// });
-
-// Unnecassary Code!
-// const x = {
-//   coordinate1: 1, //dumby data
-//   coordinate2: 'A', //dumby data
-//   ship: {
-//     length: 4,//dumby data
-//     hit(value) {
-//       for (let i = 0; i <= length; i++) {
-//         if (shipsLife[i] === false) continue;
-//         else {
-//           shipsLife[i] = true;
-//         }
-//       }
-//       shipsLife[value] = false;
-//       return shipsLife;
-//     },
-//     sunkShip() {
-//       if (shipsLife.every((value) => value === false)) {
-//         return 'sink';
-//       }
-//     },
-//   },
-// };
-
-// Unnecassary Code!
-// test('checking current gameboard ships length ', () => {
-//   expect(x.ship.length).toEqual(gameboard.ship.length);
-// });
-
-// test('checking affects of current gameboard ships hit method', () => {
-//   expect(gameboard.ship.hit(1)).toEqual([true, false, true, true, true]);
-// });
-
-// test('checking affects of current gameboards ships sunkship method(when all ship lives are hit)', () => {
-//   gameboard.ship.hit(0);
-//   gameboard.ship.hit(2);
-//   gameboard.ship.hit(3);
-//   gameboard.ship.hit(4);
-//   expect(gameboard.ship.sunkShip()).toEqual('sink');
-// });
+  expect(gameboard.checkingIfAllShipsAreSunk()).toEqual(true);
+});
