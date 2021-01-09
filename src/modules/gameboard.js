@@ -6,11 +6,12 @@
 export const gameBoardFactory = (shipContainer) => {
   const missedShots = [];
   const getMissedShots = () => missedShots;
+  const equalToFalse = (bool) => bool === false;
 
   const attackTheBoardAt = (locationOfAttack) => {
     for (let i = 0; i <= shipContainer.length; i++) {
       for (const [key, shipsLocation] of Object.entries(
-        shipContainer[i].shipsCoordinates
+        shipContainer[i].shipsCoordinates,
       )) {
         if (shipsLocation === locationOfAttack) {
           return shipContainer[i].hitTheShipAtThisIndex(key);
@@ -22,8 +23,6 @@ export const gameBoardFactory = (shipContainer) => {
   };
 
   const checkingIfAllShipsAreSunk = () => {
-    const equalToFalse = (bool) => bool === false;
-
     let allFalse = shipContainer
       .map((ship) => ship.getShipsLife())
       .map((arr) => arr.every(equalToFalse));
