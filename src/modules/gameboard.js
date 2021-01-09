@@ -10,15 +10,14 @@ export const gameBoardFactory = (shipContainer) => {
   const attackTheBoardAt = (locationOfAttack) => {
     for (let i = 0; i <= shipContainer.length; i++) {
       for (const [key, shipsLocation] of Object.entries(
-        shipContainer[i].shipsCoordinates,
+        shipContainer[i].shipsCoordinates
       )) {
-        if (shipsLocation !== locationOfAttack) {
-          missedShots.push(locationOfAttack);
-          return missedShots;
-        } else {
+        if (shipsLocation === locationOfAttack) {
           return shipContainer[i].hitTheShipAtThisIndex(key);
         }
       }
+      missedShots.push(locationOfAttack);
+      return missedShots;
     }
   };
 
