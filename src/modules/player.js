@@ -1,4 +1,8 @@
 /* eslint-disable import/prefer-default-export */
-export const player = (opponentsGameBoard) => ({
-  opponentsGameBoard,
-});
+//import { ContainerForAIsTargets } from '../tests/player.test';
+
+export const player = (opponentsGameBoard) => {
+  return {
+    opponentsGameBoard,
+  };
+};
