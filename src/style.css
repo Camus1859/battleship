@@ -1,13 +1,42 @@
-.playersGrid{
+#content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gridContainer1{
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
-  background-color: rgb(201, 201, 247);
-  height: 250px;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+
+  background-color: rgb(125, 125, 196);
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.gridContainer2{
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+
+  background-color: rgb(125, 125, 196);
+  height: 500px;
   width: 500px;
   border: 1px solid black;
 }
 
 .grid-square{
   border: 1px solid black;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#gridContainers{
+  display: flex;
 }

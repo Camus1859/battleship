@@ -8,10 +8,33 @@ export const gameBoardFactory = (shipContainer) => {
   const getMissedShots = () => missedShots;
   const equalToFalse = (bool) => bool === false;
 
+  const createGameBoard = () => {
+    const gridContainer1 = document.querySelector('.gridContainer1');
+    for (let i = 0; i <= 100; i++) {
+      const newDiv = document.createElement('div');
+      newDiv.setAttribute('data-number', `${i}`);
+      newDiv.classList.add('grid-square');
+      gridContainer1.appendChild(newDiv);
+    }
+    createGameBoard2();
+  };
+
+  const createGameBoard2 = () => {
+    const gridContainer2 = document.querySelector('.gridContainer2');
+    for (let i = 0; i <= 100; i++) {
+      const newDiv = document.createElement('div');
+      newDiv.setAttribute('data-number', `${i}`);
+      newDiv.classList.add('grid-square');
+      gridContainer2.appendChild(newDiv);
+    }
+  };
+
+  const getCreateGameBoard = () => createGameBoard();
+
   const attackTheBoardAt = (locationOfAttack) => {
     for (let i = 0; i <= shipContainer.length; i++) {
       for (const [key, shipsLocation] of Object.entries(
-        shipContainer[i].shipsCoordinates,
+        shipContainer[i].shipsCoordinates
       )) {
         if (shipsLocation === locationOfAttack) {
           return shipContainer[i].hitTheShipAtThisIndex(key);
@@ -35,5 +58,6 @@ export const gameBoardFactory = (shipContainer) => {
     attackTheBoardAt,
     checkingIfAllShipsAreSunk,
     getMissedShots,
+    getCreateGameBoard,
   };
 };

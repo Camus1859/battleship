@@ -10,9 +10,119 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _modules_gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gameboard */ "./src/modules/gameboard.js");
 
-var newyear = 2021;
-console.log("Hello ".concat(newyear, " ypp00ppppi"));
+
+var x = (0,_modules_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoardFactory)();
+x.getCreateGameBoard();
+
+/***/ }),
+
+/***/ "./src/modules/gameboard.js":
+/*!**********************************!*\
+  !*** ./src/modules/gameboard.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "gameBoardFactory": () => /* binding */ gameBoardFactory
+/* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-else-return */
+
+/* eslint-disable no-undef */
+
+/* eslint-disable no-restricted-syntax */
+
+/* eslint-disable import/prefer-default-export */
+var gameBoardFactory = function gameBoardFactory(shipContainer) {
+  var missedShots = [];
+
+  var getMissedShots = function getMissedShots() {
+    return missedShots;
+  };
+
+  var equalToFalse = function equalToFalse(bool) {
+    return bool === false;
+  };
+
+  var createGameBoard = function createGameBoard() {
+    var gridContainer1 = document.querySelector('.gridContainer1');
+
+    for (var i = 0; i <= 100; i++) {
+      var newDiv = document.createElement('div');
+      newDiv.setAttribute('data-number', "".concat(i));
+      newDiv.classList.add('grid-square');
+      gridContainer1.appendChild(newDiv);
+    }
+
+    createGameBoard2();
+  };
+
+  var createGameBoard2 = function createGameBoard2() {
+    var gridContainer2 = document.querySelector('.gridContainer2');
+
+    for (var i = 0; i <= 100; i++) {
+      var newDiv = document.createElement('div');
+      newDiv.setAttribute('data-number', "".concat(i));
+      newDiv.classList.add('grid-square');
+      gridContainer2.appendChild(newDiv);
+    }
+  };
+
+  var getCreateGameBoard = function getCreateGameBoard() {
+    return createGameBoard();
+  };
+
+  var attackTheBoardAt = function attackTheBoardAt(locationOfAttack) {
+    for (var i = 0; i <= shipContainer.length; i++) {
+      for (var _i = 0, _Object$entries = Object.entries(shipContainer[i].shipsCoordinates); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            shipsLocation = _Object$entries$_i[1];
+
+        if (shipsLocation === locationOfAttack) {
+          return shipContainer[i].hitTheShipAtThisIndex(key);
+        }
+      }
+
+      missedShots.push(locationOfAttack);
+      return missedShots;
+    }
+  };
+
+  var checkingIfAllShipsAreSunk = function checkingIfAllShipsAreSunk() {
+    var allFalse = shipContainer.map(function (ship) {
+      return ship.getShipsLife();
+    }).map(function (arr) {
+      return arr.every(equalToFalse);
+    });
+    allFalse = allFalse.every(function (item) {
+      return item === true;
+    });
+    return allFalse;
+  };
+
+  return {
+    shipContainer: shipContainer,
+    attackTheBoardAt: attackTheBoardAt,
+    checkingIfAllShipsAreSunk: checkingIfAllShipsAreSunk,
+    getMissedShots: getMissedShots,
+    getCreateGameBoard: getCreateGameBoard
+  };
+};
 
 /***/ }),
 
@@ -35,7 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".playersGrid{\n  display: grid;\n  grid-template-rows: repeat(2, 1fr);\n  grid-template-columns: repeat(2, 1fr);\n  background-color: rgb(201, 201, 247);\n  height: 250px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,kCAAkC;EAClC,qCAAqC;EACrC,oCAAoC;EACpC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;AACzB","sourcesContent":[".playersGrid{\n  display: grid;\n  grid-template-rows: repeat(2, 1fr);\n  grid-template-columns: repeat(2, 1fr);\n  background-color: rgb(201, 201, 247);\n  height: 250px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n\n  background-color: rgb(125, 125, 196);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n\n  background-color: rgb(125, 125, 196);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n#gridContainers{\n  display: flex;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;;EAEtC,oCAAoC;EACpC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;;EAEtC,oCAAoC;EACpC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;;AAErB;;AAEA;EACE,aAAa;AACf","sourcesContent":["#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n\n  background-color: rgb(125, 125, 196);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n\n  background-color: rgb(125, 125, 196);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n#gridContainers{\n  display: flex;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

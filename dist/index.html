@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Battleship</title>
 </head>
+<div id='content-container'>
 <div id="title">Battleship</div>
 <div id="capt-info">Captain, place your Carrier.</div>
 <div id="btns-container">
@@ -12,15 +13,21 @@
   <button id="btn-axis">Axis: X</button>
   <button id="btn-axis hidden">Axis: Y</button>
 </div>
+<div id="gridContainers">
+<div class="gridContainer1">
+</div>
 
-<div class="playersGrid">
-  <div class='grid-square'></div>
-  <div  class='grid-square'></div>
-  <div  class='grid-square'></div>
-  <div  class='grid-square'></div>
+<div class="gridContainer2">
+</div>
 
 </div>
 
+<form>
+  <label>Enter Your Name:</label>
+  <input type = 'text' id='enterYourName' value= ''>
+  <input type = 'submit' id='submitBtn' value= 'Start Game'>
+</form>
+</div>
 
 <body>
   <script src="./bundle.js"></script>
