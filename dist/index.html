@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Battleship</title>
-</head>
-<div id='content-container'>
-<div id="title">Battleship</div>
-<div id="capt-info">Captain, place your Carrier.</div>
-<div id="btns-container">
-  <button id="btn-rules">Rules</button>
-  <button id="btn-axis">Axis: X</button>
-  <button id="btn-axis hidden">Axis: Y</button>
-</div>
-<div id="gridContainers">
-<div class="gridContainer1">
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battleship</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <div id="content-container">
+    <div class='name-title'>BATTLESHIP</div>
+    <div id="capt-info">Captain, place your Carrier.</div>
+    <div id="btns-container">
+      <button class="btns" id="btn-rules">RULES</button>
+      <button class="btns" id="btn-axis">AXIS: X</button>
+      <button class="btns hidden" id="btn-axis hidden">AXIS: Y</button>
+    </div>
+    <div id="gridContainers">
+      <div class="gridContainer1"></div>
 
-<div class="gridContainer2">
-</div>
+      <div class="gridContainer2"></div>
+    </div>
 
-</div>
+    <form>
+      <label class='name-title' >Enter Your Name:</label>
+      <input type="text" id="enterYourName" value="" />
+      <input type="submit" id="submitBtn" value="START GAME" />
+    </form>
 
-<form>
-  <label>Enter Your Name:</label>
-  <input type = 'text' id='enterYourName' value= ''>
-  <input type = 'submit' id='submitBtn' value= 'Start Game'>
-</form>
-</div>
+    <div id="modal">
+      <div id="rules-title">
+        <h1>Battleship Rules:</h1>
+        <button id="close-modal">&times;</button>
+      </div>
 
-<body>
-  <script src="./bundle.js"></script>
-</body>
+      <p>
+        Place all of your ships on the board, then input your name and press
+        'Start Game'.
+      </p>
+
+      <p>
+        You begin your turn by clicking a tile on the enemy board (labeled
+        'Enemy Waters'). If you hit an enemy ship, you will see a bomb and the
+        tile will turn grey. If you miss, you will see a X. After your shot
+        registers, your opponent will choose a tile and simulate his turn in the
+        same manner.
+      </p>
+
+      <p>
+        Whenever you hit all of the tiles of an enemy ship, the game will
+        display that you sunk an enemy ship.
+      </p>
+
+      <p>
+        The first player to sink all of their opponent's ships wins the game.
+      </p>
+    </div>
+  </div>
+
+  <body>
+    <script src="./bundle.js"></script>
+  </body>
 </html>

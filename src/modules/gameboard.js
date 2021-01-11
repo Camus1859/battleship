@@ -7,6 +7,34 @@ export const gameBoardFactory = (shipContainer) => {
   const missedShots = [];
   const getMissedShots = () => missedShots;
   const equalToFalse = (bool) => bool === false;
+  const atoz = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
 
   const createGameBoard = () => {
     const gridContainer1 = document.querySelector('.gridContainer1');
