@@ -1,3 +1,13 @@
-body{
-  background: rgb(122, 179, 127);
+.playersGrid{
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgb(201, 201, 247);
+  height: 250px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.grid-square{
+  border: 1px solid black;
 }

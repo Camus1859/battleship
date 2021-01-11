@@ -22,8 +22,6 @@ export const gameBoardFactory = (shipContainer) => {
     }
   };
 
-  
-
   const checkingIfAllShipsAreSunk = () => {
     let allFalse = shipContainer
       .map((ship) => ship.getShipsLife())
