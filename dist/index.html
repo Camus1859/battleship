@@ -11,29 +11,36 @@
     />
   </head>
   <div id="content-container">
-    <div class='name-title'>BATTLESHIP</div>
+    <div class="name-title">BATTLESHIP</div>
     <div id="capt-info">Captain, place your Carrier.</div>
     <div id="btns-container">
       <button class="btns" id="btn-rules">RULES</button>
-      <button class="btns" id="btn-axis">AXIS: X</button>
-      <button class="btns hidden" id="btn-axis hidden">AXIS: Y</button>
-    </div>
-    <div id="gridContainers">
-      <div class="gridContainer1"></div>
-
-      <div class="gridContainer2"></div>
+      <button class="btns btn-axis-x">AXIS: X</button>
+      <button class="btns btn-axis-y hidden">AXIS: Y</button>
     </div>
 
-    <form>
-      <label class='name-title' >Enter Your Name:</label>
+    <div class="nameOnShips">
+      <div class="playerNameContainer ">
+        <div id="playerNameHeader hidden"></div>
+        <div class="gridContainer1"></div>
+      </div>
+
+      <div class="enemyWatersContainer hidden">
+        <div id="enemyWaters">ENEMY WATERS</div>
+        <div class="gridContainer2"></div>
+      </div>
+    </div>
+
+    <form class='hidden'>
+      <label class="name-title">Enter Your Name:</label>
       <input type="text" id="enterYourName" value="" />
       <input type="submit" id="submitBtn" value="START GAME" />
     </form>
 
-    <div id="modal">
+    <div class="modal hidden">
       <div id="rules-title">
         <h1>Battleship Rules:</h1>
-        <button id="close-modal">&times;</button>
+        <button class="close-modal">&times;</button>
       </div>
 
       <p>
