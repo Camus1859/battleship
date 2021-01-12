@@ -17,19 +17,19 @@ const shipContainerBlue = [];
 const shipsLivesBlue1 = 4;
 const shipsLivesBlue2 = 5;
 const thisShipsCoordinatesBlue1 = {
-  0: 'A1',
-  1: 'A2',
-  2: 'A3',
-  3: 'A4',
-  4: 'A5',
+  0: 6,
+  1: 7,
+  2: 8,
+  3: 9,
+  4: 10,
 };
 const thisShipsCoordinatesBlue2 = {
-  0: 'B1',
-  1: 'B2',
-  2: 'B3',
-  3: 'B4',
-  4: 'B5',
-  5: 'B6',
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
 };
 const shipBlue1 = shipFactory(shipsLivesBlue1, counter(), thisShipsCoordinatesBlue1);
 const shipBlue2 = shipFactory(shipsLivesBlue2, counter() + 1, thisShipsCoordinatesBlue2);
@@ -38,22 +38,22 @@ shipContainerBlue.push(shipBlue2);
 
 // shipContainerB data
 const shipContainerRed = [];
-const shipsLivesRed1 = 4;
-const shipsLivesRed2 = 5;
+const shipsLivesRed1 = 5;
+const shipsLivesRed2 = 4;
 const thisShipsCoordinatesRed1 = {
-  0: 'C1',
-  1: 'C2',
-  2: 'C3',
-  3: 'C4',
-  4: 'C5',
+  0: 30,
+  1: 31,
+  2: 32,
+  3: 33,
+  4: 34,
+  5: 35,
 };
 const thisShipsCoordinatesRed2 = {
-  0: 'D1',
-  1: 'D2',
-  2: 'D3',
-  3: 'D4',
-  4: 'D5',
-  5: 'D6',
+  0: 95,
+  1: 96,
+  2: 97,
+  3: 98,
+  4: 99,
 };
 const shipRed1 = shipFactory(shipsLivesRed1, counter() + 2, thisShipsCoordinatesRed1);
 const shipRed2 = shipFactory(shipsLivesRed2, counter() + 3, thisShipsCoordinatesRed2);

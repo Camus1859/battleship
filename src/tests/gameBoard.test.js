@@ -9,16 +9,16 @@ const gameBoardBlue = gameBoardFactory(shipContainerBlue);
 
 test('checking gameboard objects ability to read coordinates for a ship', () => {
   expect(gameBoardBlue.shipContainer[0].shipsCoordinates).toEqual({
-    0: 'A1',
-    1: 'A2',
-    2: 'A3',
-    3: 'A4',
-    4: 'A5',
+    0: 6,
+    1: 7,
+    2: 8,
+    3: 9,
+    4: 10,
   });
 });
 
 test('determine attack hit a ship', () => {
-  expect(gameBoardBlue.attackTheBoardAt('A1')).toStrictEqual([
+  expect(gameBoardBlue.attackTheBoardAt(6)).toStrictEqual([
     false,
     true,
     true,
@@ -28,12 +28,10 @@ test('determine attack hit a ship', () => {
 });
 
 test('records attack that missed ship', () => {
-  gameBoardBlue.attackTheBoardAt('P5');
-  gameBoardBlue.attackTheBoardAt('K9');
-  expect(gameBoardBlue.attackTheBoardAt('M14')).toStrictEqual(['P5', 'K9', 'M14']);
+  gameBoardBlue.attackTheBoardAt(50);
+  gameBoardBlue.attackTheBoardAt(51);
+  gameBoardBlue.attackTheBoardAt(52);
+  expect(gameBoardBlue.getMissedShots()).toStrictEqual([50, 51, 52]);
 });
 
-export {
-  gameBoardBlue,
-  gameBoardRed,
-};
+export { gameBoardBlue, gameBoardRed };

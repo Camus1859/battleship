@@ -13,8 +13,8 @@ body{
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
   background-color: rgb(110, 195, 252);
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
   border: 1px solid black;
 }
 
@@ -23,8 +23,8 @@ body{
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
   background-color:  rgb(110, 195, 252);
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
   border: 1px solid black;
 }
 

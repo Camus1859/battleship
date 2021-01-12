@@ -7,34 +7,6 @@ export const gameBoardFactory = (shipContainer) => {
   const missedShots = [];
   const getMissedShots = () => missedShots;
   const equalToFalse = (bool) => bool === false;
-  const atoz = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
 
   const createGameBoard = () => {
     const gridContainer1 = document.querySelector('.gridContainer1');
@@ -51,7 +23,7 @@ export const gameBoardFactory = (shipContainer) => {
     const gridContainer2 = document.querySelector('.gridContainer2');
     for (let i = 0; i <= 100; i++) {
       const newDiv = document.createElement('div');
-      newDiv.setAttribute('data-number', `${i}`);
+      newDiv.setAttribute('data', `${i}`);
       newDiv.classList.add('grid-square');
       gridContainer2.appendChild(newDiv);
     }
@@ -64,7 +36,7 @@ export const gameBoardFactory = (shipContainer) => {
       for (const [key, shipsLocation] of Object.entries(
         shipContainer[i].shipsCoordinates
       )) {
-        if (shipsLocation === locationOfAttack) {
+        if (shipsLocation == locationOfAttack) {
           return shipContainer[i].hitTheShipAtThisIndex(key);
         }
       }

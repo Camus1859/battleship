@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
@@ -7,12 +8,10 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _modules_gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gameboard */ "./src/modules/gameboard.js");
 /* harmony import */ var _modules_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/ui */ "./src/modules/ui.js");
-/* harmony import */ var _modules_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_ui__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -27,7 +26,6 @@ creatingBoard.getCreateGameBoard();
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "gameBoardFactory": () => /* binding */ gameBoardFactory
@@ -62,8 +60,6 @@ var gameBoardFactory = function gameBoardFactory(shipContainer) {
     return bool === false;
   };
 
-  var atoz = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
   var createGameBoard = function createGameBoard() {
     var gridContainer1 = document.querySelector('.gridContainer1');
 
@@ -82,7 +78,7 @@ var gameBoardFactory = function gameBoardFactory(shipContainer) {
 
     for (var i = 0; i <= 100; i++) {
       var newDiv = document.createElement('div');
-      newDiv.setAttribute('data-number', "".concat(i));
+      newDiv.setAttribute('data', "".concat(i));
       newDiv.classList.add('grid-square');
       gridContainer2.appendChild(newDiv);
     }
@@ -99,7 +95,7 @@ var gameBoardFactory = function gameBoardFactory(shipContainer) {
             key = _Object$entries$_i[0],
             shipsLocation = _Object$entries$_i[1];
 
-        if (shipsLocation === locationOfAttack) {
+        if (shipsLocation == locationOfAttack) {
           return shipContainer[i].hitTheShipAtThisIndex(key);
         }
       }
@@ -132,13 +128,204 @@ var gameBoardFactory = function gameBoardFactory(shipContainer) {
 
 /***/ }),
 
+/***/ "./src/modules/gameflow.js":
+/*!*********************************!*\
+  !*** ./src/modules/gameflow.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "gameFlow": () => /* binding */ gameFlow
+/* harmony export */ });
+/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/modules/ship.js");
+/* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gameboard */ "./src/modules/gameboard.js");
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player */ "./src/modules/player.js");
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
+/* eslint-disable import/prefer-default-export */
+
+
+
+var gameFlow = function gameFlow() {
+  var ContainerForAIsTargets = [];
+  var randomTargetForAI;
+  var shipContainerBlue = [];
+  var shipContainerRed = [];
+
+  var _counter = function counter() {
+    var count = 0;
+    return function () {
+      return _readOnlyError("counter"), _counter++;
+    };
+  }; /// Made up Data, will come from UI
+
+
+  var shipsLivesBlue1 = 5;
+  var shipsLivesBlue2 = 6;
+  var thisShipsCoordinatesBlue1 = {
+    0: 6,
+    1: 7,
+    2: 8,
+    3: 9,
+    4: 10
+  };
+  var thisShipsCoordinatesBlue2 = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5
+  };
+  var shipBlue1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue1, _counter(), thisShipsCoordinatesBlue1);
+  var shipBlue2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue2, _counter() + 1, thisShipsCoordinatesBlue2);
+  / /; ///////////////////////////////////////////
+  /// Made up Data, will come from UI
+
+  var shipsLivesRed1 = 5;
+  var shipsLivesRed2 = 6;
+  var thisShipsCoordinatesRed1 = {
+    0: 30,
+    1: 31,
+    2: 32,
+    3: 33,
+    4: 34
+  };
+  var thisShipsCoordinatesRed2 = {
+    0: 95,
+    1: 96,
+    2: 97,
+    3: 98,
+    4: 99,
+    5: 100
+  };
+  var shipRed1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed1, _counter() + 2, thisShipsCoordinatesRed1);
+  var shipRed2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed2, _counter() + 3, thisShipsCoordinatesRed2);
+  shipContainerBlue.push(shipBlue1);
+  shipContainerBlue.push(shipBlue2);
+  shipContainerRed.push(shipRed1);
+  shipContainerRed.push(shipRed2);
+  var gameBoardBlue = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoardFactory)(shipContainerBlue);
+  var gameBoardRed = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoardFactory)(shipContainerRed);
+  var playerBlueAttack = (0,_player__WEBPACK_IMPORTED_MODULE_2__.player)(gameBoardRed);
+  var AiRedAttack = (0,_player__WEBPACK_IMPORTED_MODULE_2__.player)(gameBoardBlue);
+
+  var generateAITargetValue = function generateAITargetValue() {
+    randomTargetForAI = Math.floor(Math.random() * 100); // eslint-disable-next-line no-use-before-define
+
+    randomTargetForAI = comparingAITargetToShipsCoordinates(randomTargetForAI);
+    ContainerForAIsTargets.push(randomTargetForAI);
+    return randomTargetForAI;
+  };
+
+  var comparingAITargetToShipsCoordinates = function comparingAITargetToShipsCoordinates(AICurrentTargetValue) {
+    var targetValueAlreadyInContainer = ContainerForAIsTargets.find(function (previousTargetValue) {
+      return previousTargetValue === AICurrentTargetValue;
+    });
+
+    if (targetValueAlreadyInContainer) {
+      generateAITargetValue();
+    }
+
+    return AICurrentTargetValue;
+  };
+
+  return {
+    shipContainerBlue: shipContainerBlue
+  };
+};
+
+/***/ }),
+
+/***/ "./src/modules/player.js":
+/*!*******************************!*\
+  !*** ./src/modules/player.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "player": () => /* binding */ player
+/* harmony export */ });
+/* eslint-disable import/prefer-default-export */
+var player = function player(opponentsGameBoard) {
+  return {
+    opponentsGameBoard: opponentsGameBoard
+  };
+};
+
+/***/ }),
+
+/***/ "./src/modules/ship.js":
+/*!*****************************!*\
+  !*** ./src/modules/ship.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shipFactory": () => /* binding */ shipFactory
+/* harmony export */ });
+/* eslint-disable no-plusplus */
+
+/* eslint-disable import/prefer-default-export */
+var shipFactory = function shipFactory(shipsLives, id, shipsCoordinates) {
+  var uniqueNumber = id;
+
+  var getUniqueNumber = function getUniqueNumber() {
+    return uniqueNumber;
+  };
+
+  var shipsLife = [];
+
+  var getShipsLife = function getShipsLife() {
+    return shipsLife;
+  };
+
+  var hitTheShipAtThisIndex = function hitTheShipAtThisIndex(value) {
+    for (var i = 0; i <= shipsLives; i++) {
+      if (shipsLife[i] === false) continue;else {
+        shipsLife[i] = true;
+      }
+    }
+
+    shipsLife[value] = false;
+    return shipsLife;
+  };
+
+  var sunkShip = function sunkShip() {
+    if (shipsLife.every(function (value) {
+      return value === false;
+    })) {
+      return 'sink';
+    }
+  };
+
+  return {
+    shipsLives: shipsLives,
+    hitTheShipAtThisIndex: hitTheShipAtThisIndex,
+    sunkShip: sunkShip,
+    getUniqueNumber: getUniqueNumber,
+    shipsCoordinates: shipsCoordinates,
+    getShipsLife: getShipsLife
+  };
+};
+
+/***/ }),
+
 /***/ "./src/modules/ui.js":
 /*!***************************!*\
   !*** ./src/modules/ui.js ***!
   \***************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _gameflow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameflow */ "./src/modules/gameflow.js");
+/* eslint-disable no-console */
 
 /* eslint-disable import/prefer-default-export */
+
 var rulesBtn = document.querySelector('#btn-rules');
 var closeModal = document.querySelector('.close-modal');
 var modal = document.querySelector('.modal');
@@ -187,7 +374,6 @@ submitBtn.addEventListener('click', getPlayersName);
   \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
@@ -201,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\n  background: rgb(237, 237, 238);\n}\n\n#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color: rgb(110, 195, 252);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color:  rgb(110, 195, 252);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n\n\n.name-title {\n  display: inline-block;\n  font-size: 65px;\n  color: #000;\n  font-family: 'Oswald', sans-serif;\n  margin-bottom: 2rem;\n}\n\n.capt-info{\n  border: 2px solid black;\n  padding: 15px 120px 20px 120px;\n  font-size: 35px;\n  font-weight: normal;\n  border-radius: 10px;\n  background: rgb(255, 255, 255);\n  margin-bottom: 2rem;\n  height: 30px;\n  background-color: rgb(191, 203, 209);\n  \n\n\n}\n\n.btns{\n  padding: 10px;\n  font-weight: bold;\n  background-color: white;\n  outline: none;\n  font-size: 15px;\n  border:none;\n}\n\n.btns:hover{\n  background-color: rgb(237, 248, 255);\n  cursor: pointer;\n}\n\n.hidden{\n  display: none;\n}\n\n.modal {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 30%;\n  padding: 0rem 3rem 3rem 3rem;\n  border-radius: 20px;\n  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);\n  z-index: 10;\n  border: 1px solid black;\n  width: 30%;\n  height: 33%;\n  background: rgb(255, 255, 255);\n\n}\n\n#rules-title{\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n\n.close-modal{\n  position: absolute;\n  top: 1.2rem;\n  right: 2rem;\n  font-size: 2rem;\n  color: rgb(0, 0, 0);\n  cursor: pointer;\n  border: none;\n  background: none;\n  outline: none;\n\n\n}\n\n.close-modal:hover{\n  outline: none;\n}\n\np{\n text-align: center;\n font-size: 18px;\n}\n\n#enterYourName{\n  padding: 15px 30px 15px 30px;\n  width: 40%;\n  height: 30px;\n  border-radius: 10px;\n  outline: none;\n  font-size: 20px;\n  text-align: center;\n  margin-bottom: 1.5rem;\n  font-size: 50px;\n  font-weight: bolder;\n\n}\n\n#submitBtn {\n  font-size: 25px;\n  font-weight: bolder;\n  padding: 15px;\n  cursor: pointer;\n}\n\n.playerNameContainer{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nameOnShips{\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  justify-content: space-around;\n}\n\n#playerNameHeader, #enemyWaters{\n  width: 100%;\n  background-color: black;\n  color: white;\n  text-align: center;\n  padding: 1rem 0rem 1rem 0rem;\n  font-weight: bold;\n  font-size: 2rem;\n  margin-bottom: 5px;\n  height: 37px;\n}\n\n.btns-container{\n  margin-bottom: 2rem;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;AAChC;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;EACtC,oCAAoC;EACpC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;EACtC,qCAAqC;EACrC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;;AAErB;;;;AAIA;EACE,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,iCAAiC;EACjC,mBAAmB;AACrB;;AAEA;EACE,uBAAuB;EACvB,8BAA8B;EAC9B,eAAe;EACf,mBAAmB;EACnB,mBAAmB;EACnB,8BAA8B;EAC9B,mBAAmB;EACnB,YAAY;EACZ,oCAAoC;;;;AAItC;;AAEA;EACE,aAAa;EACb,iBAAiB;EACjB,uBAAuB;EACvB,aAAa;EACb,eAAe;EACf,WAAW;AACb;;AAEA;EACE,oCAAoC;EACpC,eAAe;AACjB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;EAChC,UAAU;EACV,4BAA4B;EAC5B,mBAAmB;EACnB,0CAA0C;EAC1C,WAAW;EACX,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,8BAA8B;;AAEhC;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,WAAW;EACX,WAAW;EACX,eAAe;EACf,mBAAmB;EACnB,eAAe;EACf,YAAY;EACZ,gBAAgB;EAChB,aAAa;;;AAGf;;AAEA;EACE,aAAa;AACf;;AAEA;CACC,kBAAkB;CAClB,eAAe;AAChB;;AAEA;EACE,4BAA4B;EAC5B,UAAU;EACV,YAAY;EACZ,mBAAmB;EACnB,aAAa;EACb,eAAe;EACf,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,mBAAmB;;AAErB;;AAEA;EACE,eAAe;EACf,mBAAmB;EACnB,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,WAAW;EACX,uBAAuB;EACvB,6BAA6B;AAC/B;;AAEA;EACE,WAAW;EACX,uBAAuB;EACvB,YAAY;EACZ,kBAAkB;EAClB,4BAA4B;EAC5B,iBAAiB;EACjB,eAAe;EACf,kBAAkB;EAClB,YAAY;AACd;;AAEA;EACE,mBAAmB;AACrB","sourcesContent":["body{\n  background: rgb(237, 237, 238);\n}\n\n#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color: rgb(110, 195, 252);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color:  rgb(110, 195, 252);\n  height: 500px;\n  width: 500px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n\n\n.name-title {\n  display: inline-block;\n  font-size: 65px;\n  color: #000;\n  font-family: 'Oswald', sans-serif;\n  margin-bottom: 2rem;\n}\n\n.capt-info{\n  border: 2px solid black;\n  padding: 15px 120px 20px 120px;\n  font-size: 35px;\n  font-weight: normal;\n  border-radius: 10px;\n  background: rgb(255, 255, 255);\n  margin-bottom: 2rem;\n  height: 30px;\n  background-color: rgb(191, 203, 209);\n  \n\n\n}\n\n.btns{\n  padding: 10px;\n  font-weight: bold;\n  background-color: white;\n  outline: none;\n  font-size: 15px;\n  border:none;\n}\n\n.btns:hover{\n  background-color: rgb(237, 248, 255);\n  cursor: pointer;\n}\n\n.hidden{\n  display: none;\n}\n\n.modal {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 30%;\n  padding: 0rem 3rem 3rem 3rem;\n  border-radius: 20px;\n  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);\n  z-index: 10;\n  border: 1px solid black;\n  width: 30%;\n  height: 33%;\n  background: rgb(255, 255, 255);\n\n}\n\n#rules-title{\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n\n.close-modal{\n  position: absolute;\n  top: 1.2rem;\n  right: 2rem;\n  font-size: 2rem;\n  color: rgb(0, 0, 0);\n  cursor: pointer;\n  border: none;\n  background: none;\n  outline: none;\n\n\n}\n\n.close-modal:hover{\n  outline: none;\n}\n\np{\n text-align: center;\n font-size: 18px;\n}\n\n#enterYourName{\n  padding: 15px 30px 15px 30px;\n  width: 40%;\n  height: 30px;\n  border-radius: 10px;\n  outline: none;\n  font-size: 20px;\n  text-align: center;\n  margin-bottom: 1.5rem;\n  font-size: 50px;\n  font-weight: bolder;\n\n}\n\n#submitBtn {\n  font-size: 25px;\n  font-weight: bolder;\n  padding: 15px;\n  cursor: pointer;\n}\n\n.playerNameContainer{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nameOnShips{\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  justify-content: space-around;\n}\n\n#playerNameHeader, #enemyWaters{\n  width: 100%;\n  background-color: black;\n  color: white;\n  text-align: center;\n  padding: 1rem 0rem 1rem 0rem;\n  font-weight: bold;\n  font-size: 2rem;\n  margin-bottom: 5px;\n  height: 37px;\n}\n\n.btns-container{\n  margin-bottom: 2rem;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body{\n  background: rgb(237, 237, 238);\n}\n\n#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color: rgb(110, 195, 252);\n  height: 600px;\n  width: 600px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color:  rgb(110, 195, 252);\n  height: 600px;\n  width: 600px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n\n\n.name-title {\n  display: inline-block;\n  font-size: 65px;\n  color: #000;\n  font-family: 'Oswald', sans-serif;\n  margin-bottom: 2rem;\n}\n\n.capt-info{\n  border: 2px solid black;\n  padding: 15px 120px 20px 120px;\n  font-size: 35px;\n  font-weight: normal;\n  border-radius: 10px;\n  background: rgb(255, 255, 255);\n  margin-bottom: 2rem;\n  height: 30px;\n  background-color: rgb(191, 203, 209);\n  \n\n\n}\n\n.btns{\n  padding: 10px;\n  font-weight: bold;\n  background-color: white;\n  outline: none;\n  font-size: 15px;\n  border:none;\n}\n\n.btns:hover{\n  background-color: rgb(237, 248, 255);\n  cursor: pointer;\n}\n\n.hidden{\n  display: none;\n}\n\n.modal {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 30%;\n  padding: 0rem 3rem 3rem 3rem;\n  border-radius: 20px;\n  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);\n  z-index: 10;\n  border: 1px solid black;\n  width: 30%;\n  height: 33%;\n  background: rgb(255, 255, 255);\n\n}\n\n#rules-title{\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n\n.close-modal{\n  position: absolute;\n  top: 1.2rem;\n  right: 2rem;\n  font-size: 2rem;\n  color: rgb(0, 0, 0);\n  cursor: pointer;\n  border: none;\n  background: none;\n  outline: none;\n\n\n}\n\n.close-modal:hover{\n  outline: none;\n}\n\np{\n text-align: center;\n font-size: 18px;\n}\n\n#enterYourName{\n  padding: 15px 30px 15px 30px;\n  width: 40%;\n  height: 30px;\n  border-radius: 10px;\n  outline: none;\n  font-size: 20px;\n  text-align: center;\n  margin-bottom: 1.5rem;\n  font-size: 50px;\n  font-weight: bolder;\n\n}\n\n#submitBtn {\n  font-size: 25px;\n  font-weight: bolder;\n  padding: 15px;\n  cursor: pointer;\n}\n\n.playerNameContainer{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nameOnShips{\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  justify-content: space-around;\n}\n\n#playerNameHeader, #enemyWaters{\n  width: 100%;\n  background-color: black;\n  color: white;\n  text-align: center;\n  padding: 1rem 0rem 1rem 0rem;\n  font-weight: bold;\n  font-size: 2rem;\n  margin-bottom: 5px;\n  height: 37px;\n}\n\n.btns-container{\n  margin-bottom: 2rem;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;AAChC;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;EACtC,oCAAoC;EACpC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,mCAAmC;EACnC,sCAAsC;EACtC,qCAAqC;EACrC,aAAa;EACb,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;;AAErB;;;;AAIA;EACE,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,iCAAiC;EACjC,mBAAmB;AACrB;;AAEA;EACE,uBAAuB;EACvB,8BAA8B;EAC9B,eAAe;EACf,mBAAmB;EACnB,mBAAmB;EACnB,8BAA8B;EAC9B,mBAAmB;EACnB,YAAY;EACZ,oCAAoC;;;;AAItC;;AAEA;EACE,aAAa;EACb,iBAAiB;EACjB,uBAAuB;EACvB,aAAa;EACb,eAAe;EACf,WAAW;AACb;;AAEA;EACE,oCAAoC;EACpC,eAAe;AACjB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;EAChC,UAAU;EACV,4BAA4B;EAC5B,mBAAmB;EACnB,0CAA0C;EAC1C,WAAW;EACX,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,8BAA8B;;AAEhC;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,WAAW;EACX,WAAW;EACX,eAAe;EACf,mBAAmB;EACnB,eAAe;EACf,YAAY;EACZ,gBAAgB;EAChB,aAAa;;;AAGf;;AAEA;EACE,aAAa;AACf;;AAEA;CACC,kBAAkB;CAClB,eAAe;AAChB;;AAEA;EACE,4BAA4B;EAC5B,UAAU;EACV,YAAY;EACZ,mBAAmB;EACnB,aAAa;EACb,eAAe;EACf,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,mBAAmB;;AAErB;;AAEA;EACE,eAAe;EACf,mBAAmB;EACnB,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,WAAW;EACX,uBAAuB;EACvB,6BAA6B;AAC/B;;AAEA;EACE,WAAW;EACX,uBAAuB;EACvB,YAAY;EACZ,kBAAkB;EAClB,4BAA4B;EAC5B,iBAAiB;EACjB,eAAe;EACf,kBAAkB;EAClB,YAAY;AACd;;AAEA;EACE,mBAAmB;AACrB","sourcesContent":["body{\n  background: rgb(237, 237, 238);\n}\n\n#content-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.gridContainer1{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color: rgb(110, 195, 252);\n  height: 600px;\n  width: 600px;\n  border: 1px solid black;\n}\n\n.gridContainer2{\n  display: grid;\n  grid-template-rows: repeat(10, 1fr);\n  grid-template-columns: repeat(10, 1fr);\n  background-color:  rgb(110, 195, 252);\n  height: 600px;\n  width: 600px;\n  border: 1px solid black;\n}\n\n.grid-square{\n  border: 1px solid black;\n}\n\nform{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n}\n\n\n\n.name-title {\n  display: inline-block;\n  font-size: 65px;\n  color: #000;\n  font-family: 'Oswald', sans-serif;\n  margin-bottom: 2rem;\n}\n\n.capt-info{\n  border: 2px solid black;\n  padding: 15px 120px 20px 120px;\n  font-size: 35px;\n  font-weight: normal;\n  border-radius: 10px;\n  background: rgb(255, 255, 255);\n  margin-bottom: 2rem;\n  height: 30px;\n  background-color: rgb(191, 203, 209);\n  \n\n\n}\n\n.btns{\n  padding: 10px;\n  font-weight: bold;\n  background-color: white;\n  outline: none;\n  font-size: 15px;\n  border:none;\n}\n\n.btns:hover{\n  background-color: rgb(237, 248, 255);\n  cursor: pointer;\n}\n\n.hidden{\n  display: none;\n}\n\n.modal {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 30%;\n  padding: 0rem 3rem 3rem 3rem;\n  border-radius: 20px;\n  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);\n  z-index: 10;\n  border: 1px solid black;\n  width: 30%;\n  height: 33%;\n  background: rgb(255, 255, 255);\n\n}\n\n#rules-title{\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n\n.close-modal{\n  position: absolute;\n  top: 1.2rem;\n  right: 2rem;\n  font-size: 2rem;\n  color: rgb(0, 0, 0);\n  cursor: pointer;\n  border: none;\n  background: none;\n  outline: none;\n\n\n}\n\n.close-modal:hover{\n  outline: none;\n}\n\np{\n text-align: center;\n font-size: 18px;\n}\n\n#enterYourName{\n  padding: 15px 30px 15px 30px;\n  width: 40%;\n  height: 30px;\n  border-radius: 10px;\n  outline: none;\n  font-size: 20px;\n  text-align: center;\n  margin-bottom: 1.5rem;\n  font-size: 50px;\n  font-weight: bolder;\n\n}\n\n#submitBtn {\n  font-size: 25px;\n  font-weight: bolder;\n  padding: 15px;\n  cursor: pointer;\n}\n\n.playerNameContainer{\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.nameOnShips{\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  justify-content: space-around;\n}\n\n#playerNameHeader, #enemyWaters{\n  width: 100%;\n  background-color: black;\n  color: white;\n  text-align: center;\n  padding: 1rem 0rem 1rem 0rem;\n  font-weight: bold;\n  font-size: 2rem;\n  margin-bottom: 5px;\n  height: 37px;\n}\n\n.btns-container{\n  margin-bottom: 2rem;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -214,7 +400,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "body{\n  background: rgb(237, 237, 238
   \*****************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /*
@@ -290,7 +475,6 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -332,7 +516,6 @@ module.exports = function cssWithMappingToString(item) {
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
@@ -362,7 +545,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 var isOldIE = function isOldIE() {

@@ -1,4 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
+import { gameFlow } from './gameflow';
+
 const rulesBtn = document.querySelector('#btn-rules');
 const closeModal = document.querySelector('.close-modal');
 const modal = document.querySelector('.modal');
