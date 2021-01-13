@@ -20,11 +20,25 @@ const hideRules = () => {
 };
 
 const displayYaxisBtn = () => {
+  const carriersContainer = document.querySelector('.carriers-Container');
+  carriersContainer.style.flexDirection = 'column';
+  const ships = document.querySelectorAll('.ships');
+  ships.forEach((ship) => {
+    ship.style.flexDirection = 'row';
+  });
+
   yAxisBtn.classList.remove('hidden');
   xAxisBtn.classList.add('hidden');
 };
 
 const displayXaxisBtn = () => {
+  const carriersContainer = document.querySelector('.carriers-Container');
+  carriersContainer.style.flexDirection = 'row';
+  const ships = document.querySelectorAll('.ships');
+  ships.forEach((ship) => {
+    ship.style.flexDirection = 'column';
+  });
+
   xAxisBtn.classList.remove('hidden');
   yAxisBtn.classList.add('hidden');
 };
@@ -35,6 +49,20 @@ const getPlayersName = (e) => {
   enterYourName.value = '';
   playerNameHeader.textContent = userName;
 };
+
+const container = document.querySelector('.gridContainer1');
+const draggables = document.querySelectorAll('.draggable');
+
+container.addEventListener('dragover', () => {
+  const draggable = document.querySelector('.dragging');
+  container.appendChild(draggable);
+});
+
+draggables.forEach((draggable) => {
+  draggable.addEventListener('dragstart', () => {
+    draggable.classList.add('dragging');
+  });
+});
 
 rulesBtn.addEventListener('click', displayRules);
 closeModal.addEventListener('click', hideRules);

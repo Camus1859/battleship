@@ -4,3 +4,4 @@ import './modules/ui';
 
 const creatingBoard = gameBoardFactory();
 creatingBoard.getCreateGameBoard();
+
