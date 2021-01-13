@@ -88,8 +88,6 @@ export const gameFlow = () => {
   const playerBlueAttack = player(gameBoardRed);
   const AiRedAttack = player(gameBoardBlue);
 
-
-
   const generateAITargetValue = () => {
     randomTargetForAI = Math.floor(Math.random() * 100);
     // eslint-disable-next-line no-use-before-define
