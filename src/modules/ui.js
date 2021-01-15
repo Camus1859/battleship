@@ -50,12 +50,14 @@ const getPlayersName = (e) => {
   playerNameHeader.textContent = userName;
 };
 
-const container = document.querySelector('.gridContainer1');
+const containers = document.querySelectorAll('.grid-square');
 const draggables = document.querySelectorAll('.draggable');
 
-container.addEventListener('dragover', () => {
-  const draggable = document.querySelector('.dragging');
-  container.appendChild(draggable);
+containers.forEach((container) => {
+  container.addEventListener('dragover', () => {
+    const draggable = document.querySelector('.dragging');
+    container.appendChild(draggable);
+  });
 });
 
 draggables.forEach((draggable) => {

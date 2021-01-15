@@ -248,7 +248,7 @@ p{
   /* flex-direction: column; */
 }
 
-.ships{
+.ship{
    display: flex;
   justify-content: center; 
   flex-direction: column;
@@ -256,34 +256,5 @@ p{
 }
 
 .dragging{
+  opacity: .9;
 }
-
-/* .carriers-Container{ y axis
-  height: 300px;
-  width: 300px;
-  background-color: rgb(210, 212, 218);
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ships{
-
-} */
-
-
-/* .carriers-Container{ x axis centered
-  height: 300px;
-  width: 300px;
-  background-color: rgb(210, 212, 218);
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.ships{
-  display: flex;
-  justify-content: center;
-} */
