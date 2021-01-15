@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _modules_gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gameboard */ "./src/modules/gameboard.js");
 /* harmony import */ var _modules_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/ui */ "./src/modules/ui.js");
+/* eslint-disable no-console */
 
 
 
@@ -27,13 +28,29 @@ ships.forEach(function (ship) {
 
 var showParentElement = function showParentElement(e) {
   ships.forEach(function (ship) {
-    var divAbove = ship.closest('.grid-square');
+    var shipLandedHere = ship.closest('.grid-square');
 
-    if (divAbove) {
-      var numberOfGridSquares = divAbove.firstElementChild.childElementCount;
+    if (shipLandedHere) {
+      var numberOfGridSquares = shipLandedHere.firstElementChild.childElementCount;
+
+      if (shipLandedHere.firstElementChild.classList.contains('column')) {
+        var currentLocation = +shipLandedHere.getAttribute('data-number');
+
+        for (var i = 0; i < numberOfGridSquares; i++) {
+          var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 10;
+          console.log(shipLandedHere);
+        }
+
+        shipLandedHere.firstElementChild.remove();
+      } else {
+        if (shipLandedHere.firstElementChild.classList.contains('row')) {}
+      }
     }
   });
-};
+}; // let toDoDiv = document.querySelector(`[data-number="${checkBoxNumber}"]`)
+
 
 gridSquares.forEach(function (gridSquare) {
   gridSquare.addEventListener('dragenter', function (e) {

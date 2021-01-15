@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './style.css';
 import { gameBoardFactory } from './modules/gameboard';
 import './modules/ui';
@@ -16,12 +17,31 @@ ships.forEach((ship) => {
 
 const showParentElement = (e) => {
   ships.forEach((ship) => {
-    const divAbove = ship.closest('.grid-square');
-    if (divAbove) {
-      const numberOfGridSquares = divAbove.firstElementChild.childElementCount;
+    const shipLandedHere = ship.closest('.grid-square');
+    if (shipLandedHere) {
+      const numberOfGridSquares =
+        shipLandedHere.firstElementChild.childElementCount;
+      if (shipLandedHere.firstElementChild.classList.contains('column')) {
+        let currentLocation = +shipLandedHere.getAttribute('data-number');
+
+        for (let i = 0; i < numberOfGridSquares; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 10;
+          console.log(shipLandedHere);
+        }
+        shipLandedHere.firstElementChild.remove();
+      } else {
+        if (shipLandedHere.firstElementChild.classList.contains('row')) {
+        }
+      }
     }
   });
 };
+
+// let toDoDiv = document.querySelector(`[data-number="${checkBoxNumber}"]`)
 
 gridSquares.forEach((gridSquare) => {
   gridSquare.addEventListener('dragenter', (e) => {
