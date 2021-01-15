@@ -34,12 +34,13 @@ const showParentElement = (e) => {
         }
         shipLandedHere.firstElementChild.remove();
       } else {
-        if (shipLandedHere.firstElementChild.classList.contains('row')) {
-        }
+        
       }
     }
   });
 };
+
+
 
 // let toDoDiv = document.querySelector(`[data-number="${checkBoxNumber}"]`)
 

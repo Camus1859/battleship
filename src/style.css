@@ -81,6 +81,9 @@ body{
 
 .grid-square{
   border: 1px solid black;
+  max-height: 47.8px;
+  max-width: 48px;
+  
 }
 
 form{
