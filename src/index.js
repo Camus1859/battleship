@@ -14,6 +14,15 @@ ships.forEach((ship) => {
   });
 });
 
+const showParentElement = (e) => {
+  ships.forEach((ship) => {
+    const divAbove = ship.closest('.grid-square');
+    if (divAbove) {
+      const numberOfGridSquares = divAbove.firstElementChild.childElementCount;
+    }
+  });
+};
+
 gridSquares.forEach((gridSquare) => {
   gridSquare.addEventListener('dragenter', (e) => {
     e.preventDefault();
@@ -23,8 +32,11 @@ gridSquares.forEach((gridSquare) => {
 });
 
 gridSquares.forEach((gridSquare) => {
-  gridSquare.addEventListener('dragend', () => {
+  gridSquare.addEventListener('dragend', (e) => {
     const dragging = document.querySelector('.dragging');
     dragging.classList.remove('dragging');
+    dragging.classList.remove('ship');
+    dragging.classList.add('shipAxis');
+    showParentElement(e);
   });
 });

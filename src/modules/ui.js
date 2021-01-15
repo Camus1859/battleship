@@ -22,11 +22,12 @@ const hideRules = () => {
 const displayYaxisBtn = () => {
   const carriersContainer = document.querySelector('.carriers-Container');
   carriersContainer.style.flexDirection = 'column';
-  const ships = document.querySelectorAll('.ships');
+  const ships = document.querySelectorAll('.ship');
   ships.forEach((ship) => {
     ship.style.flexDirection = 'row';
+    ship.classList.add('row');
+    ship.classList.remove('column');
   });
-
   yAxisBtn.classList.remove('hidden');
   xAxisBtn.classList.add('hidden');
 };
@@ -34,11 +35,12 @@ const displayYaxisBtn = () => {
 const displayXaxisBtn = () => {
   const carriersContainer = document.querySelector('.carriers-Container');
   carriersContainer.style.flexDirection = 'row';
-  const ships = document.querySelectorAll('.ships');
+  const ships = document.querySelectorAll('.ship');
   ships.forEach((ship) => {
     ship.style.flexDirection = 'column';
+    ship.classList.add('column');
+    ship.classList.remove('row');
   });
-
   xAxisBtn.classList.remove('hidden');
   yAxisBtn.classList.add('hidden');
 };
