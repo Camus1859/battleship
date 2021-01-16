@@ -20,6 +20,7 @@ var creatingBoard = (0,_modules_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoard
 creatingBoard.getCreateGameBoard();
 var ships = document.querySelectorAll('.ship');
 var gridSquares = document.querySelectorAll('.grid-square');
+var bodyOfShips = document.querySelectorAll('.bodyOfShip');
 ships.forEach(function (ship) {
   ship.addEventListener('dragstart', function () {
     ship.classList.add('dragging');
@@ -27,38 +28,53 @@ ships.forEach(function (ship) {
 });
 
 var showParentElement = function showParentElement(e) {
+  var shipNumber;
+  var lengthOfShip;
   ships.forEach(function (ship) {
-    var shipLandedHere = ship.closest('.grid-square');
+    var gridInContainerContainingShip = ship.closest('.grid-square');
 
-    if (shipLandedHere) {
-      console.log(shipLandedHere);
-      var numberOfGridSquares = shipLandedHere.firstElementChild.childElementCount;
+    if (gridInContainerContainingShip) {
+      lengthOfShip = gridInContainerContainingShip.firstElementChild.childElementCount;
 
-      if (shipLandedHere.firstElementChild.classList.contains('column')) {
-        var currentLocation = +shipLandedHere.getAttribute('data-number');
+      if (gridInContainerContainingShip.firstElementChild.classList.contains('column')) {
+        var currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
+        bodyOfShips.forEach(function (bodyOfShip) {
+          bodyOfShip.addEventListener('mousedown', function () {
+            shipNumber = +bodyOfShip.getAttribute('ship-number');
+          });
+        });
 
-        for (var i = 0; i < numberOfGridSquares; i++) {
+        for (var i = 0; i <= shipNumber - 1; i++) {
           var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
           thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 10;
-          console.log(shipLandedHere);
+          currentLocation -= 10;
         }
 
-        shipLandedHere.firstElementChild.remove();
-      }
-
-      if (shipLandedHere.firstElementChild.classList.contains('row')) {
-        var _currentLocation = +shipLandedHere.getAttribute('data-number');
-
-        for (var _i = 0; _i < numberOfGridSquares; _i++) {
-          var _thisSquare = document.querySelector("[data-number=\"".concat(_currentLocation, "\"]"));
+        for (var _i = 0; _i <= lengthOfShip - shipNumber; _i++) {
+          var _thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
 
           _thisSquare.style.backgroundColor = 'grey';
-          _currentLocation += 1;
-        }
+          currentLocation += 10;
+        } // gridInContainerContainingShip.firstElementChild.remove();
 
-        shipLandedHere.firstElementChild.remove();
-      }
+      } // if (
+      //   gridInContainerContainingShip.firstElementChild.classList.contains(
+      //     'row'
+      //   )
+      // ) {
+      //   let currentLocation = +gridInContainerContainingShip.getAttribute(
+      //     'data-number'
+      //   );
+      //   for (let i = 0; i < lengthOfShip; i++) {
+      //     const thisSquare = document.querySelector(
+      //       `[data-number="${currentLocation}"]`
+      //     );
+      //     thisSquare.style.backgroundColor = 'grey';
+      //     currentLocation += 1;
+      //   }
+      //   gridInContainerContainingShip.firstElementChild.remove();
+      // }
+
     }
   });
 };
@@ -67,7 +83,6 @@ gridSquares.forEach(function (gridSquare) {
   gridSquare.addEventListener('dragenter', function (e) {
     e.preventDefault();
     var dragging = document.querySelector('.dragging');
-    console.log(dragging);
 
     if (dragging.classList.contains('car')) {
       dragging.style.minWidth = '250px';
