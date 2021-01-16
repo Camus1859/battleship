@@ -53,25 +53,37 @@ const showParentElement = (e) => {
           thisSquare.style.backgroundColor = 'grey';
           currentLocation += 10;
         }
-       // gridInContainerContainingShip.firstElementChild.remove();
       }
-      // if (
-      //   gridInContainerContainingShip.firstElementChild.classList.contains(
-      //     'row'
-      //   )
-      // ) {
-      //   let currentLocation = +gridInContainerContainingShip.getAttribute(
-      //     'data-number'
-      //   );
-      //   for (let i = 0; i < lengthOfShip; i++) {
-      //     const thisSquare = document.querySelector(
-      //       `[data-number="${currentLocation}"]`
-      //     );
-      //     thisSquare.style.backgroundColor = 'grey';
-      //     currentLocation += 1;
-      //   }
-      //   gridInContainerContainingShip.firstElementChild.remove();
-      // }
+      if (
+        gridInContainerContainingShip.firstElementChild.classList.contains(
+          'row'
+        )
+      ) {
+        let currentLocation = +gridInContainerContainingShip.getAttribute(
+          'data-number'
+        );
+
+        bodyOfShips.forEach((bodyOfShip) => {
+          bodyOfShip.addEventListener('mousedown', () => {
+            shipNumber = +bodyOfShip.getAttribute('ship-number');
+          });
+        });
+
+        for (let i = 0; i <= shipNumber - 1; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation -= 1;
+        }
+        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 1;
+        }
+      }
     }
   });
 };
