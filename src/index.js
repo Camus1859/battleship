@@ -19,6 +19,7 @@ const showParentElement = (e) => {
   ships.forEach((ship) => {
     const shipLandedHere = ship.closest('.grid-square');
     if (shipLandedHere) {
+      console.log(shipLandedHere);
       const numberOfGridSquares =
         shipLandedHere.firstElementChild.childElementCount;
       if (shipLandedHere.firstElementChild.classList.contains('column')) {
@@ -33,7 +34,8 @@ const showParentElement = (e) => {
           console.log(shipLandedHere);
         }
         shipLandedHere.firstElementChild.remove();
-      } else {
+      }
+      if (shipLandedHere.firstElementChild.classList.contains('row')) {
         let currentLocation = +shipLandedHere.getAttribute('data-number');
         for (let i = 0; i < numberOfGridSquares; i++) {
           const thisSquare = document.querySelector(
@@ -41,7 +43,6 @@ const showParentElement = (e) => {
           );
           thisSquare.style.backgroundColor = 'grey';
           currentLocation += 1;
-          console.log(shipLandedHere);
         }
         shipLandedHere.firstElementChild.remove();
       }
@@ -53,6 +54,19 @@ gridSquares.forEach((gridSquare) => {
   gridSquare.addEventListener('dragenter', (e) => {
     e.preventDefault();
     const dragging = document.querySelector('.dragging');
+    console.log(dragging)
+    if (dragging.classList.contains('car')) {
+      dragging.style.minWidth = '250px';
+    }
+    if (dragging.classList.contains('bat')) {
+      dragging.style.minWidth = '199px';
+    }
+    if (dragging.classList.contains('des')) {
+      dragging.style.minWidth = '149px';
+    }
+    if (dragging.classList.contains('pat')) {
+      dragging.style.minWidth = '100px';
+    }
     gridSquare.appendChild(dragging);
   });
 });

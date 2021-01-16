@@ -52,21 +52,6 @@ const getPlayersName = (e) => {
   playerNameHeader.textContent = userName;
 };
 
-const containers = document.querySelectorAll('.grid-square');
-const draggables = document.querySelectorAll('.draggable');
-
-containers.forEach((container) => {
-  container.addEventListener('dragover', () => {
-    const draggable = document.querySelector('.dragging');
-    container.appendChild(draggable);
-  });
-});
-
-draggables.forEach((draggable) => {
-  draggable.addEventListener('dragstart', () => {
-    draggable.classList.add('dragging');
-  });
-});
 
 rulesBtn.addEventListener('click', displayRules);
 closeModal.addEventListener('click', hideRules);
