@@ -34,15 +34,20 @@ const showParentElement = (e) => {
         }
         shipLandedHere.firstElementChild.remove();
       } else {
-        
+        let currentLocation = +shipLandedHere.getAttribute('data-number');
+        for (let i = 0; i < numberOfGridSquares; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 1;
+          console.log(shipLandedHere);
+        }
+        shipLandedHere.firstElementChild.remove();
       }
     }
   });
 };
-
-
-
-// let toDoDiv = document.querySelector(`[data-number="${checkBoxNumber}"]`)
 
 gridSquares.forEach((gridSquare) => {
   gridSquare.addEventListener('dragenter', (e) => {

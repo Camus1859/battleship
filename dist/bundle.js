@@ -44,11 +44,22 @@ var showParentElement = function showParentElement(e) {
         }
 
         shipLandedHere.firstElementChild.remove();
-      } else {}
+      } else {
+        var _currentLocation = +shipLandedHere.getAttribute('data-number');
+
+        for (var _i = 0; _i < numberOfGridSquares; _i++) {
+          var _thisSquare = document.querySelector("[data-number=\"".concat(_currentLocation, "\"]"));
+
+          _thisSquare.style.backgroundColor = 'grey';
+          _currentLocation += 1;
+          console.log(shipLandedHere);
+        }
+
+        shipLandedHere.firstElementChild.remove();
+      }
     }
   });
-}; // let toDoDiv = document.querySelector(`[data-number="${checkBoxNumber}"]`)
-
+};
 
 gridSquares.forEach(function (gridSquare) {
   gridSquare.addEventListener('dragenter', function (e) {
