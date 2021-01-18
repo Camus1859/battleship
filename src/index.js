@@ -20,7 +20,6 @@ let shipNumber;
 bodyOfShips.forEach((bodyOfShip) => {
   bodyOfShip.addEventListener('mousedown', () => {
     shipNumber = +bodyOfShip.getAttribute('ship-number');
-    console.log('b');
   });
 });
 
@@ -39,23 +38,34 @@ const showParentElement = (e) => {
         let currentLocation = +gridInContainerContainingShip.getAttribute(
           'data-number'
         );
-        console.log('a');
+        let originalLocation = +gridInContainerContainingShip.getAttribute(
+          'data-number'
+        );
+      
 
+        // creating divs for ship at location of mouse and down
+        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          console.log('this location and down: ' + currentLocation)
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 10
+
+        }
         for (let i = 0; i <= shipNumber - 1; i++) {
           const thisSquare = document.querySelector(
-            `[data-number="${currentLocation}"]`
+            `[data-number="${originalLocation}"]`
           );
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation -= 10;
-          console.log('c');
-        }
-        for (let i = 0; i < lengthOfShip - shipNumber; i++) {
-          const thisSquare = document.querySelector(
-            `[data-number="${currentLocation}"]`
-          );
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 10;
-          console.log('d');
+          thisSquare.style.backgroundColor = 'green';
+          originalLocation -= 10
+
+          console.log('up: ' + originalLocation)
+
+
+
+
+       
         }
       }
       if (

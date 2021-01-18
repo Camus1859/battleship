@@ -30,7 +30,6 @@ var shipNumber;
 bodyOfShips.forEach(function (bodyOfShip) {
   bodyOfShip.addEventListener('mousedown', function () {
     shipNumber = +bodyOfShip.getAttribute('ship-number');
-    console.log('b');
   });
 });
 
@@ -44,21 +43,21 @@ var showParentElement = function showParentElement(e) {
 
       if (gridInContainerContainingShip.firstElementChild.classList.contains('column')) {
         var currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
-        console.log('a');
+        var originalLocation = +gridInContainerContainingShip.getAttribute('data-number'); // creating divs for ship at location of mouse and down
 
-        for (var i = 0; i <= shipNumber - 1; i++) {
+        for (var i = 0; i <= lengthOfShip - shipNumber; i++) {
           var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
+          console.log('this location and down: ' + currentLocation);
           thisSquare.style.backgroundColor = 'grey';
-          currentLocation -= 10;
-          console.log('c');
+          currentLocation += 10;
         }
 
-        for (var _i = 0; _i < lengthOfShip - shipNumber; _i++) {
-          var _thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
+        for (var _i = 0; _i <= shipNumber - 1; _i++) {
+          var _thisSquare = document.querySelector("[data-number=\"".concat(originalLocation, "\"]"));
 
-          _thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 10;
-          console.log('d');
+          _thisSquare.style.backgroundColor = 'green';
+          originalLocation -= 10;
+          console.log('up: ' + originalLocation);
         }
       }
 
