@@ -112,3 +112,83 @@
     <script src="./bundle.js"></script>
   </body>
 </html>
+
+
+
+
+<!-- const showParentElement = (e) => {
+  let shipNumber;
+  let lengthOfShip;
+  ships.forEach((ship) => {
+    const gridInContainerContainingShip = ship.closest('.grid-square');
+    if (gridInContainerContainingShip) {
+      console.log(gridInContainerContainingShip);
+      lengthOfShip =
+        gridInContainerContainingShip.firstElementChild.childElementCount;
+      if (
+        gridInContainerContainingShip.firstElementChild.classList.contains(
+          'column'
+        )
+      ) {
+        let currentLocation = +gridInContainerContainingShip.getAttribute(
+          'data-number'
+        );
+        console.log('a');
+
+        bodyOfShips.forEach((bodyOfShip) => {
+          bodyOfShip.addEventListener('mousedown', () => {
+            shipNumber = +bodyOfShip.getAttribute('ship-number');
+            console.log('b');
+          });
+        });
+
+        for (let i = 0; i <= shipNumber - 1; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation -= 10;
+          console.log('c');
+        }
+        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 10;
+          console.log('d');
+        }
+      }
+      if (
+        gridInContainerContainingShip.firstElementChild.classList.contains(
+          'row'
+        )
+      ) {
+        let currentLocation = +gridInContainerContainingShip.getAttribute(
+          'data-number'
+        );
+
+        bodyOfShips.forEach((bodyOfShip) => {
+          bodyOfShip.addEventListener('mousedown', () => {
+            shipNumber = +bodyOfShip.getAttribute('ship-number');
+          });
+        });
+
+        for (let i = 0; i <= shipNumber - 1; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation -= 1;
+        }
+        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+          const thisSquare = document.querySelector(
+            `[data-number="${currentLocation}"]`
+          );
+          thisSquare.style.backgroundColor = 'grey';
+          currentLocation += 1;
+        }
+      }
+    }
+  });
+}; -->

@@ -15,7 +15,7 @@ body{
   background-color: rgb(127, 136, 143);
   height: 47.8px;
   width: 48px;
-  border: 1px solid black;
+  border: 1px solid gainsboro;
 }
 
 .battleship{
@@ -25,7 +25,7 @@ body{
   background-color: rgb(235, 94, 28);
   height: 47.8px;
   width: 48px;
-  border: 1px solid black;
+  border: 1px solid gainsboro;
 }
 
 .destroyer{
@@ -35,7 +35,7 @@ body{
   background-color: rgb(107, 185, 5);
   height: 47.8px;
   width: 48px;
-  border: 1px solid black;
+  border: 1px solid gainsboro;
 }
 
 .submarine{
@@ -45,7 +45,7 @@ body{
   background-color: rgb(17, 5, 185);
   height: 47.8px;
   width: 48px;
-  border: 1px solid black;
+  border: 1px solid gainsboro;
 }
 
 .patrol-boat{
@@ -55,7 +55,7 @@ body{
   background-color: rgb(255, 189, 6);
   height: 47.8px;
   width: 48px;
-  border: 1px solid black;
+  border: 1px solid gainsboro;
 }
 
 
@@ -263,7 +263,11 @@ p{
 }
 
 .dragging{
-  opacity: .9;
+  opacity: .1;
 
+}
+
+.hidden{
+  display: none;
 }
 

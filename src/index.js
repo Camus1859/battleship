@@ -16,8 +16,15 @@ ships.forEach((ship) => {
   });
 });
 
+let shipNumber;
+bodyOfShips.forEach((bodyOfShip) => {
+  bodyOfShip.addEventListener('mousedown', () => {
+    shipNumber = +bodyOfShip.getAttribute('ship-number');
+    console.log('b');
+  });
+});
+
 const showParentElement = (e) => {
-  let shipNumber;
   let lengthOfShip;
   ships.forEach((ship) => {
     const gridInContainerContainingShip = ship.closest('.grid-square');
@@ -32,12 +39,7 @@ const showParentElement = (e) => {
         let currentLocation = +gridInContainerContainingShip.getAttribute(
           'data-number'
         );
-
-        bodyOfShips.forEach((bodyOfShip) => {
-          bodyOfShip.addEventListener('mousedown', () => {
-            shipNumber = +bodyOfShip.getAttribute('ship-number');
-          });
-        });
+        console.log('a');
 
         for (let i = 0; i <= shipNumber - 1; i++) {
           const thisSquare = document.querySelector(
@@ -45,13 +47,15 @@ const showParentElement = (e) => {
           );
           thisSquare.style.backgroundColor = 'grey';
           currentLocation -= 10;
+          console.log('c');
         }
-        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+        for (let i = 0; i < lengthOfShip - shipNumber; i++) {
           const thisSquare = document.querySelector(
             `[data-number="${currentLocation}"]`
           );
           thisSquare.style.backgroundColor = 'grey';
           currentLocation += 10;
+          console.log('d');
         }
       }
       if (
@@ -104,6 +108,7 @@ gridSquares.forEach((gridSquare) => {
     if (dragging.classList.contains('pat')) {
       dragging.style.minWidth = '100px';
     }
+    
     gridSquare.appendChild(dragging);
   });
 });
@@ -114,6 +119,7 @@ gridSquares.forEach((gridSquare) => {
     dragging.classList.remove('dragging');
     dragging.classList.remove('ship');
     dragging.classList.add('shipAxis');
+    dragging.classList.add('hidden')
     showParentElement(e);
   });
 });
