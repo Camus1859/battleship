@@ -104,6 +104,7 @@ gridSquares.forEach(function (gridSquare) {
   gridSquare.addEventListener('dragenter', function (e) {
     e.preventDefault();
     var dragging = document.querySelector('.dragging');
+    dragging.classList.add('hidden');
 
     if (dragging.classList.contains('car')) {
       dragging.style.minWidth = '250px';
