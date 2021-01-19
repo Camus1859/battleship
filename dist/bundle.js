@@ -21,6 +21,17 @@ creatingBoard.getCreateGameBoard();
 var ships = document.querySelectorAll('.ship');
 var gridSquares = document.querySelectorAll('.grid-square');
 var bodyOfShips = document.querySelectorAll('.bodyOfShip');
+var myCounter;
+
+var counter = function counter() {
+  var count = 0;
+  return function () {
+    count += 1;
+    return count;
+  };
+};
+
+var add = counter();
 ships.forEach(function (ship) {
   ship.addEventListener('dragstart', function () {
     ship.classList.add('dragging');
@@ -32,60 +43,61 @@ bodyOfShips.forEach(function (bodyOfShip) {
     shipNumber = +bodyOfShip.getAttribute('ship-number');
   });
 });
+var currentLocation;
+var originalLocation;
+var lengthOfShip;
+
+var getShipNumber = function getShipNumber() {
+  for (var i = 0; i <= lengthOfShip - shipNumber; i++) {
+    var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
+    thisSquare.style.backgroundColor = 'grey';
+    currentLocation += 10;
+  }
+
+  for (var _i = 0; _i <= shipNumber - 1; _i++) {
+    var _thisSquare = document.querySelector("[data-number=\"".concat(originalLocation, "\"]"));
+
+    _thisSquare.style.backgroundColor = 'green';
+    originalLocation -= 10;
+  }
+};
+
+var getShipNumber2 = function getShipNumber2() {
+  for (var i = 0; i <= lengthOfShip - shipNumber; i++) {
+    var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
+    thisSquare.style.backgroundColor = 'grey';
+    currentLocation += 1;
+  }
+
+  for (var _i2 = 0; _i2 <= shipNumber - 1; _i2++) {
+    var _thisSquare2 = document.querySelector("[data-number=\"".concat(originalLocation, "\"]"));
+
+    _thisSquare2.style.backgroundColor = 'orange';
+    originalLocation -= 1;
+  }
+};
 
 var showParentElement = function showParentElement(e) {
-  var lengthOfShip;
-  ships.forEach(function (ship) {
-    var gridInContainerContainingShip = ship.closest('.grid-square');
+  console.log('b');
+  var gridInContainerContainingShip = document.getElementById("".concat(myCounter.counting));
+  console.log(gridInContainerContainingShip);
 
-    if (gridInContainerContainingShip) {
-      lengthOfShip = gridInContainerContainingShip.firstElementChild.childElementCount;
+  if (gridInContainerContainingShip) {
+    lengthOfShip = gridInContainerContainingShip.firstElementChild.childElementCount;
 
-      if (gridInContainerContainingShip.firstElementChild.classList.contains('column')) {
-        var currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
-        var originalLocation = +gridInContainerContainingShip.getAttribute('data-number'); // creating divs for ship at location of mouse and down
+    if (gridInContainerContainingShip.firstElementChild.classList.contains('column')) {
+      currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
+      originalLocation = +gridInContainerContainingShip.getAttribute('data-number'); // creating divs for ship at location of mouse and down
 
-        for (var i = 0; i <= lengthOfShip - shipNumber; i++) {
-          var thisSquare = document.querySelector("[data-number=\"".concat(currentLocation, "\"]"));
-          console.log('this location and down: ' + currentLocation);
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 10;
-        }
-
-        for (var _i = 0; _i <= shipNumber - 1; _i++) {
-          var _thisSquare = document.querySelector("[data-number=\"".concat(originalLocation, "\"]"));
-
-          _thisSquare.style.backgroundColor = 'green';
-          originalLocation -= 10;
-          console.log('up: ' + originalLocation);
-        }
-      }
-
-      if (gridInContainerContainingShip.firstElementChild.classList.contains('row')) {
-        var _currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
-
-        bodyOfShips.forEach(function (bodyOfShip) {
-          bodyOfShip.addEventListener('mousedown', function () {
-            shipNumber = +bodyOfShip.getAttribute('ship-number');
-          });
-        });
-
-        for (var _i2 = 0; _i2 <= shipNumber - 1; _i2++) {
-          var _thisSquare2 = document.querySelector("[data-number=\"".concat(_currentLocation, "\"]"));
-
-          _thisSquare2.style.backgroundColor = 'grey';
-          _currentLocation -= 1;
-        }
-
-        for (var _i3 = 0; _i3 <= lengthOfShip - shipNumber; _i3++) {
-          var _thisSquare3 = document.querySelector("[data-number=\"".concat(_currentLocation, "\"]"));
-
-          _thisSquare3.style.backgroundColor = 'grey';
-          _currentLocation += 1;
-        }
-      }
+      getShipNumber();
     }
-  });
+
+    if (gridInContainerContainingShip.firstElementChild.classList.contains('row')) {
+      currentLocation = +gridInContainerContainingShip.getAttribute('data-number');
+      originalLocation = +gridInContainerContainingShip.getAttribute('data-number');
+      getShipNumber2();
+    }
+  }
 };
 
 gridSquares.forEach(function (gridSquare) {
@@ -119,6 +131,11 @@ gridSquares.forEach(function (gridSquare) {
     dragging.classList.remove('ship');
     dragging.classList.add('shipAxis');
     dragging.classList.add('hidden');
+    console.log('a');
+    myCounter = {
+      counting: add()
+    };
+    dragging.parentElement.id = "".concat(myCounter.counting);
     showParentElement(e);
   });
 });
@@ -246,8 +263,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/modules/ship.js");
 /* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gameboard */ "./src/modules/gameboard.js");
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player */ "./src/modules/player.js");
-function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
-
 /* eslint-disable import/prefer-default-export */
 
 
@@ -258,11 +273,10 @@ var gameFlow = function gameFlow() {
   var shipContainerBlue = [];
   var shipContainerRed = [];
 
-  var _counter = function counter() {
+  var counter = function counter() {
     var count = 0;
-    return function () {
-      return _readOnlyError("counter"), _counter++;
-    };
+    count += 1;
+    return count;
   }; /// Made up Data, will come from UI
 
 
@@ -283,8 +297,8 @@ var gameFlow = function gameFlow() {
     4: 4,
     5: 5
   };
-  var shipBlue1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue1, _counter(), thisShipsCoordinatesBlue1);
-  var shipBlue2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue2, _counter() + 1, thisShipsCoordinatesBlue2);
+  var shipBlue1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue1, counter(), thisShipsCoordinatesBlue1);
+  var shipBlue2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesBlue2, counter() + 1, thisShipsCoordinatesBlue2);
   / /; ///////////////////////////////////////////
   /// Made up Data, will come from UI
 
@@ -305,12 +319,13 @@ var gameFlow = function gameFlow() {
     4: 99,
     5: 100
   };
-  var shipRed1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed1, _counter() + 2, thisShipsCoordinatesRed1);
-  var shipRed2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed2, _counter() + 3, thisShipsCoordinatesRed2);
+  var shipRed1 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed1, counter() + 2, thisShipsCoordinatesRed1);
+  var shipRed2 = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipsLivesRed2, counter() + 3, thisShipsCoordinatesRed2);
   shipContainerBlue.push(shipBlue1);
   shipContainerBlue.push(shipBlue2);
   shipContainerRed.push(shipRed1);
   shipContainerRed.push(shipRed2);
+  console.log(shipBlue1);
   var gameBoardBlue = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoardFactory)(shipContainerBlue);
   var gameBoardRed = (0,_gameboard__WEBPACK_IMPORTED_MODULE_1__.gameBoardFactory)(shipContainerRed);
   var playerBlueAttack = (0,_player__WEBPACK_IMPORTED_MODULE_2__.player)(gameBoardRed);

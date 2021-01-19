@@ -12,9 +12,8 @@ export const gameFlow = () => {
 
   const counter = () => {
     let count = 0;
-    return function () {
-      return counter++;
-    };
+    count += 1;
+    return count;
   };
 
   /// Made up Data, will come from UI
@@ -81,6 +80,7 @@ export const gameFlow = () => {
   shipContainerBlue.push(shipBlue2);
   shipContainerRed.push(shipRed1);
   shipContainerRed.push(shipRed2);
+  console.log(shipBlue1);
 
   const gameBoardBlue = gameBoardFactory(shipContainerBlue);
   const gameBoardRed = gameBoardFactory(shipContainerRed);

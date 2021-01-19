@@ -9,6 +9,17 @@ creatingBoard.getCreateGameBoard();
 const ships = document.querySelectorAll('.ship');
 const gridSquares = document.querySelectorAll('.grid-square');
 const bodyOfShips = document.querySelectorAll('.bodyOfShip');
+let myCounter;
+
+const counter = () => {
+  let count = 0;
+  return function () {
+    count += 1;
+    return count;
+  };
+};
+
+const add = counter();
 
 ships.forEach((ship) => {
   ship.addEventListener('dragstart', () => {
@@ -23,83 +34,83 @@ bodyOfShips.forEach((bodyOfShip) => {
   });
 });
 
+let currentLocation;
+let originalLocation;
+let lengthOfShip;
+
+const getShipNumber = () => {
+  for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+    const thisSquare = document.querySelector(
+      `[data-number="${currentLocation}"]`
+    );
+    thisSquare.style.backgroundColor = 'grey';
+    currentLocation += 10;
+  }
+  for (let i = 0; i <= shipNumber - 1; i++) {
+    const thisSquare = document.querySelector(
+      `[data-number="${originalLocation}"]`
+    );
+    thisSquare.style.backgroundColor = 'green';
+    originalLocation -= 10;
+  }
+};
+
+const getShipNumber2 = () => {
+  for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
+    const thisSquare = document.querySelector(
+      `[data-number="${currentLocation}"]`
+    );
+    thisSquare.style.backgroundColor = 'grey';
+    currentLocation += 1;
+  }
+  for (let i = 0; i <= shipNumber - 1; i++) {
+    const thisSquare = document.querySelector(
+      `[data-number="${originalLocation}"]`
+    );
+    thisSquare.style.backgroundColor = 'orange';
+    originalLocation -= 1;
+  }
+};
+
 const showParentElement = (e) => {
-  let lengthOfShip;
-  ships.forEach((ship) => {
-    const gridInContainerContainingShip = ship.closest('.grid-square');
-    if (gridInContainerContainingShip) {
-      lengthOfShip =
-        gridInContainerContainingShip.firstElementChild.childElementCount;
-      if (
-        gridInContainerContainingShip.firstElementChild.classList.contains(
-          'column'
-        )
-      ) {
-        let currentLocation = +gridInContainerContainingShip.getAttribute(
-          'data-number'
-        );
-        let originalLocation = +gridInContainerContainingShip.getAttribute(
-          'data-number'
-        );
-      
+  console.log('b');
 
-        // creating divs for ship at location of mouse and down
-        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
-          const thisSquare = document.querySelector(
-            `[data-number="${currentLocation}"]`
-          );
-          console.log('this location and down: ' + currentLocation)
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 10
+  const gridInContainerContainingShip = document.getElementById(
+    `${myCounter.counting}`
+  );
+  console.log(gridInContainerContainingShip);
+  if (gridInContainerContainingShip) {
+    lengthOfShip =
+      gridInContainerContainingShip.firstElementChild.childElementCount;
+    if (
+      gridInContainerContainingShip.firstElementChild.classList.contains(
+        'column'
+      )
+    ) {
+      currentLocation = +gridInContainerContainingShip.getAttribute(
+        'data-number'
+      );
+      originalLocation = +gridInContainerContainingShip.getAttribute(
+        'data-number'
+      );
 
-        }
-        for (let i = 0; i <= shipNumber - 1; i++) {
-          const thisSquare = document.querySelector(
-            `[data-number="${originalLocation}"]`
-          );
-          thisSquare.style.backgroundColor = 'green';
-          originalLocation -= 10
+      // creating divs for ship at location of mouse and down
 
-          console.log('up: ' + originalLocation)
-
-
-
-
-       
-        }
-      }
-      if (
-        gridInContainerContainingShip.firstElementChild.classList.contains(
-          'row'
-        )
-      ) {
-        let currentLocation = +gridInContainerContainingShip.getAttribute(
-          'data-number'
-        );
-
-        bodyOfShips.forEach((bodyOfShip) => {
-          bodyOfShip.addEventListener('mousedown', () => {
-            shipNumber = +bodyOfShip.getAttribute('ship-number');
-          });
-        });
-
-        for (let i = 0; i <= shipNumber - 1; i++) {
-          const thisSquare = document.querySelector(
-            `[data-number="${currentLocation}"]`
-          );
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation -= 1;
-        }
-        for (let i = 0; i <= lengthOfShip - shipNumber; i++) {
-          const thisSquare = document.querySelector(
-            `[data-number="${currentLocation}"]`
-          );
-          thisSquare.style.backgroundColor = 'grey';
-          currentLocation += 1;
-        }
-      }
+      getShipNumber();
     }
-  });
+    if (
+      gridInContainerContainingShip.firstElementChild.classList.contains('row')
+    ) {
+      currentLocation = +gridInContainerContainingShip.getAttribute(
+        'data-number'
+      );
+      originalLocation = +gridInContainerContainingShip.getAttribute(
+        'data-number'
+      );
+
+      getShipNumber2();
+    }
+  }
 };
 
 gridSquares.forEach((gridSquare) => {
@@ -118,7 +129,7 @@ gridSquares.forEach((gridSquare) => {
     if (dragging.classList.contains('pat')) {
       dragging.style.minWidth = '100px';
     }
-    
+
     gridSquare.appendChild(dragging);
   });
 });
@@ -129,7 +140,10 @@ gridSquares.forEach((gridSquare) => {
     dragging.classList.remove('dragging');
     dragging.classList.remove('ship');
     dragging.classList.add('shipAxis');
-    dragging.classList.add('hidden')
+    dragging.classList.add('hidden');
+    console.log('a');
+    myCounter = { counting: add() };
+    dragging.parentElement.id = `${myCounter.counting}`;
     showParentElement(e);
   });
 });
