@@ -21,12 +21,6 @@ const counter = () => {
 
 const add = counter();
 
-ships.forEach((ship) => {
-  ship.addEventListener('dragstart', () => {
-    ship.classList.add('dragging');
-  });
-});
-
 let shipNumber;
 bodyOfShips.forEach((bodyOfShip) => {
   bodyOfShip.addEventListener('mousedown', () => {
@@ -50,7 +44,7 @@ const getShipNumber = () => {
     const thisSquare = document.querySelector(
       `[data-number="${originalLocation}"]`
     );
-    thisSquare.style.backgroundColor = 'green';
+    thisSquare.style.backgroundColor = 'grey';
     originalLocation -= 10;
   }
 };
@@ -67,7 +61,7 @@ const getShipNumber2 = () => {
     const thisSquare = document.querySelector(
       `[data-number="${originalLocation}"]`
     );
-    thisSquare.style.backgroundColor = 'orange';
+    thisSquare.style.backgroundColor = 'grey';
     originalLocation -= 1;
   }
 };
@@ -113,26 +107,40 @@ const showParentElement = (e) => {
   }
 };
 
-gridSquares.forEach((gridSquare) => {
-  gridSquare.addEventListener('dragenter', (e) => {
-    e.preventDefault();
-    const dragging = document.querySelector('.dragging');
-    dragging.classList.add('hidden');
+const creatingDropZone = (e) => {
+  const dragging = document.querySelector('.dragging');
+  dragging.classList.add('hidden');
 
-    if (dragging.classList.contains('car')) {
-      dragging.style.minWidth = '250px';
-    }
-    if (dragging.classList.contains('bat')) {
-      dragging.style.minWidth = '199px';
-    }
-    if (dragging.classList.contains('des')) {
-      dragging.style.minWidth = '149px';
-    }
-    if (dragging.classList.contains('pat')) {
-      dragging.style.minWidth = '100px';
-    }
+  if (dragging.classList.contains('car')) {
+    dragging.style.minWidth = '250px';
+  }
+  if (dragging.classList.contains('bat')) {
+    dragging.style.minWidth = '199px';
+  }
+  if (dragging.classList.contains('des')) {
+    dragging.style.minWidth = '149px';
+  }
+  if (dragging.classList.contains('pat')) {
+    dragging.style.minWidth = '100px';
+  }
+  e.path[0].appendChild(dragging);
+};
 
-    gridSquare.appendChild(dragging);
+const getReadyForDropZone = () => {
+  gridSquares.forEach((gridSquare) => {
+    if (gridSquare.style.backgroundColor === 'grey') {
+      gridSquare.removeEventListener('dragover', creatingDropZone, false)
+    } else {
+
+      gridSquare.addEventListener('dragover', creatingDropZone);
+    }
+  });
+};
+
+ships.forEach((ship) => {
+  ship.addEventListener('dragstart', () => {
+    getReadyForDropZone();
+    ship.classList.add('dragging');
   });
 });
 

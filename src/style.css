@@ -262,10 +262,6 @@ p{
  flex-direction: column;
 }
 
-.dragging{
-  opacity: .1;
-
-}
 
 .hidden{
   display: none;
