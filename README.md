@@ -1,2 +1,2 @@
-#Battleship project from TOP
-##utilized TDD.
+# Battleship project from TOP
+## utilized TDD
